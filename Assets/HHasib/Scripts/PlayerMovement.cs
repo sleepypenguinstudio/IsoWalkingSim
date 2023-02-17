@@ -7,44 +7,56 @@ public class PlayerMovement : MonoBehaviour
 {
     public Camera camera;
 
-    [SerializeField] float playerSpeed = 2f;
+   
     private RaycastHit rayCastHit;
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
     private string groundTag = "Ground";
 
+    CharacterController controller;
 
+
+    //Player
+
+    public float walkSpeed=4;
+    public float RunSpeed=8;
 
     //Animation
 
     [SerializeField] Animator animator;
-    private bool hasAnimator;
+    
     private int animIDSpeed;
     private int animIDMotionSpeed;
-    private float animationBlend;
-    public float SpeedChangeRate = 10f;
+
+    //Audio
+
+    public AudioClip[] FootStepAudioClips;
+    [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
+
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-       // agent.speed = playerSpeed;
-        hasAnimator = TryGetComponent(out animator);
+        controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
         AssignAnimationID();
     }
 
     private void Update()
     {
-        hasAnimator = TryGetComponent(out animator);
 
+
+        SetMoveAnimation(agent.velocity.magnitude,2);
         
 
     }
 
 
-    public void Movement(Vector3 mousePosition)
+    public void Movement(Vector3 mousePosition,bool isWalking)
     {
+        agent.speed = isWalking ? walkSpeed : RunSpeed;
 
-        animationBlend = Mathf.Lerp(animationBlend,playerSpeed,Time.deltaTime*SpeedChangeRate);
-      
+
+
         Ray ray = camera.ScreenPointToRay(mousePosition);
 
         if(Physics.Raycast(ray,out rayCastHit, Mathf.Infinity))
@@ -53,8 +65,10 @@ public class PlayerMovement : MonoBehaviour
 
 
                 agent.SetDestination(rayCastHit.point);
+               
 
-                
+
+
             }
         }
 
@@ -71,11 +85,32 @@ public class PlayerMovement : MonoBehaviour
         animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
     }
 
-    void SetMoveAnimation(int animVlaue)
+    void SetMoveAnimation(float animVlaue,int animMotionVlaue)
     {
         animator.SetFloat(animIDSpeed, animVlaue);
-        animator.SetFloat(animIDMotionSpeed, animVlaue);
+        animator.SetFloat(animIDMotionSpeed, animMotionVlaue);
     }
+
+    private void OnFootstep(AnimationEvent animationEvent)
+    {
+        if (animationEvent.animatorClipInfo.weight > 0.5f)
+        {
+            if (FootStepAudioClips.Length > 0)
+            {
+                var index = Random.Range(0, FootStepAudioClips.Length);
+                AudioSource.PlayClipAtPoint(FootStepAudioClips[index], transform.TransformPoint(controller.center), FootstepAudioVolume);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
 
 
 }

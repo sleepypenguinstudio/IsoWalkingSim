@@ -33,13 +33,16 @@ public class PlayerInputSystem : MonoBehaviour
         starterAssetInput.Player.Enable();
 
 
-        starterAssetInput.Player.Click.performed += SetClick;
+        starterAssetInput.Player.Click.performed += Walk;
         starterAssetInput.Player.Click.Enable();
 
+        starterAssetInput.Player.DoubleClick.performed += Run;
+        starterAssetInput.Player.DoubleClick.Enable();
 
 
     }
 
+   
     private void OnDisable()
     {
         starterAssetInput.Player.Click.Disable();
@@ -48,7 +51,7 @@ public class PlayerInputSystem : MonoBehaviour
 
 
 
-    private void SetClick(InputAction.CallbackContext context)
+    private void Walk(InputAction.CallbackContext context)
     {
 
         Vector2 mousePosition2D = Mouse.current.position.ReadValue();
@@ -56,11 +59,25 @@ public class PlayerInputSystem : MonoBehaviour
         Vector3 mousePosition3D = new Vector3(mousePosition2D.x,mousePosition2D.y,0f);
 
        // thirdPersonController.Move(mousePosition3D);
-        playerMovement.Movement(mousePosition3D);
+        playerMovement.Movement(mousePosition3D,true);
 
-        Debug.Log("Old"+ Input.mousePosition);
-        Debug.Log("New"+ mousePosition3D);
+        
     }
+
+
+
+    private void Run(InputAction.CallbackContext context)
+    {
+        Vector2 mousePosition2D = Mouse.current.position.ReadValue();
+
+        Vector3 mousePosition3D = new Vector3(mousePosition2D.x, mousePosition2D.y, 0f);
+
+        // thirdPersonController.Move(mousePosition3D);
+        playerMovement.Movement(mousePosition3D, false);
+    }
+
+
+
 
 
 }
