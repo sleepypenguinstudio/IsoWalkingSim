@@ -20,7 +20,16 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed=4;
     public float RunSpeed=8;
 
+
+    public GameObject movePoint;
+    GameObject tempMove;
+    Vector3 pointToMove;
+
+
     //Animation
+
+   
+
 
     [SerializeField] Animator animator;
     
@@ -46,7 +55,15 @@ public class PlayerMovement : MonoBehaviour
 
 
         SetMoveAnimation(agent.velocity.magnitude,2);
-        
+
+        if (Vector3.Distance(pointToMove, this.transform.position) < 1f)
+        {
+            if (tempMove != null)
+            {
+                Destroy(tempMove);
+            }
+
+        }
 
     }
 
@@ -64,6 +81,14 @@ public class PlayerMovement : MonoBehaviour
             if (rayCastHit.collider.CompareTag(groundTag)){
 
 
+                if (tempMove != null)
+                {
+                    Destroy(tempMove);
+                }
+
+                tempMove= Instantiate(movePoint,rayCastHit.point+ new Vector3(0,0.2f,0f),Quaternion.Euler(90,0,0));
+
+                pointToMove = rayCastHit.point;
                 agent.SetDestination(rayCastHit.point);
                
 
