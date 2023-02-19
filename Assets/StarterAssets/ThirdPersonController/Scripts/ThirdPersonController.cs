@@ -1,4 +1,5 @@
-﻿ using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -98,6 +99,12 @@ namespace StarterAssets
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
+
+        
+
+        public QuestManager questManager;
+  
+
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
 #endif
@@ -150,6 +157,8 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+
+           
         }
 
         private void Update()
@@ -159,6 +168,13 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Quest newQuest = new Quest("New Quest", "Description of new quest", new List<string> { "Objective 1", "Objective 2" }, 100);
+                questManager.AddQuest(newQuest);
+              
+                Debug.Log("skjck");
+            }
         }
 
         private void LateUpdate()
