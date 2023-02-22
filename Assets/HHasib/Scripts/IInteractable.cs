@@ -5,7 +5,7 @@ using UnityEngine;
 public interface IInteractable 
 {
 
-    void PropsAction();
+    void NPCAction();
 
 
 

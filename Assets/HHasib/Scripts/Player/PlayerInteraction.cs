@@ -7,7 +7,11 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] float interactRange;
     public bool IsInteractable;
-
+    PlayerMovement playerMovement;
+    private void Awake()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+    }
 
     private void OnEnable()
     {
@@ -27,9 +31,10 @@ public class PlayerInteraction : MonoBehaviour
         foreach(Collider collider in colliderArray)
         {
 
-            if (collider.CompareTag("Props") && collider.TryGetComponent(out IInteractable interactable))
+            if (collider.CompareTag("NPC") && collider.TryGetComponent(out IInteractable interactable))
             {
-                interactable.PropsAction();
+                interactable.NPCAction();
+                playerMovement.LookTowards(collider.gameObject);
             }
 
             
@@ -45,7 +50,7 @@ public class PlayerInteraction : MonoBehaviour
         foreach (Collider collider in colliderArray)
         {
 
-            if (collider.CompareTag("Props"))
+            if (collider.CompareTag("NPC"))
             {
                 return true;
             }

@@ -24,23 +24,23 @@ public class DialogueTrigger : MonoBehaviour
        
     }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.gameObject.tag == "Player")
-        {
-            visualCue.SetActive(true);
-            DialogueManager.instance.EnterDialogueMode(inkJSON);
-        }
+    //private void OnTriggerEnter(Collider collider)
+    //{
+    //    if (collider.gameObject.tag == "Player")
+    //    {
+    //        visualCue.SetActive(true);
+    //        DialogueManager.instance.EnterDialogueMode(inkJSON);
+    //    }
         
-    }
+    //}
 
-    private void OnTriggerExit(Collider collider)
-    {
-        if (collider.gameObject.tag == "Player")
-        {
-            visualCue.SetActive(false);
-        }
+    //private void OnTriggerExit(Collider collider)
+    //{
+    //    if (collider.gameObject.tag == "Player")
+    //    {
+    //        visualCue.SetActive(false);
+    //    }
 
-    }
+    //}
 
 }

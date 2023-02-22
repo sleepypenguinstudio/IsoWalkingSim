@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using Cinemachine;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class DialogueManager : MonoBehaviour
 
     public GameObject Player;
     bool isChoosing=false;
+
+    CinemachineVirtualCamera dialogueCineMachineCamera;
+
 
 
     private void Awake()
@@ -74,8 +78,11 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EnterDialogueMode(TextAsset inkJSON)
+    public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera)
     {
+
+        SetCamera(cineMachineCamera);
+
         Player.GetComponent<PlayerInputSystem>().enabled = false;
         Debug.Log("yes");
 
@@ -101,6 +108,8 @@ public class DialogueManager : MonoBehaviour
         dialoganimator.SetBool("isOpen", false);
 
         Player.GetComponent<PlayerInputSystem>().enabled = true;
+
+        GetCamera().Priority = 8 ;
     }
 
     public void ContinueStory()
@@ -121,7 +130,7 @@ public class DialogueManager : MonoBehaviour
     private void DisplayChoices()
     {
 
-        
+        Debug.Log("Ami display");
         List<Choice> currentChoices = currentStory.currentChoices;
 
         // defensive check to make sure our UI can support the number of choices coming in
@@ -169,7 +178,16 @@ public class DialogueManager : MonoBehaviour
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
         isChoosing = false;
+        Debug.Log("Here again");
         ContinueStory();
     }
+     public void SetCamera(CinemachineVirtualCamera cineMachineCamera)
+    {
+        dialogueCineMachineCamera = cineMachineCamera;
+    }
 
+    public CinemachineVirtualCamera GetCamera()
+    {
+        return dialogueCineMachineCamera;
+    }
 }

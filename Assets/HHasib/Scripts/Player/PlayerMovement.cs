@@ -128,6 +128,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void LookTowards(GameObject NPC)
+    {
+        Vector3 direction = (NPC.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y, direction.z));
+        transform.rotation = lookRotation;
+    }
+
 
 
 

@@ -12,7 +12,7 @@ public class ContentVisibility : MonoBehaviour
 
     private void Update()
     {
-        ;
+        
         if (playerInteraction.InterectDetection())
         {
            
