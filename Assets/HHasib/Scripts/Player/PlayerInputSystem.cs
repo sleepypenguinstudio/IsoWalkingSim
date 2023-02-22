@@ -8,7 +8,7 @@ using StarterAssets;
 public class PlayerInputSystem : MonoBehaviour
 {
 
-
+    public static event Action OnInteractionPressed;
 
     StarterAssetsInput starterAssetInput;
     PlayerMovement playerMovement;
@@ -39,13 +39,19 @@ public class PlayerInputSystem : MonoBehaviour
         starterAssetInput.Player.DoubleClick.performed += Run;
         starterAssetInput.Player.DoubleClick.Enable();
 
+        starterAssetInput.Player.Interact.performed += InteractSystem;
+        starterAssetInput.Player.Interact.Enable();
+
+        
 
     }
 
-   
+    
+
     private void OnDisable()
     {
         starterAssetInput.Player.Click.Disable();
+        starterAssetInput.Player.Disable();
         starterAssetInput.Player.Disable();
     }
 
@@ -78,6 +84,13 @@ public class PlayerInputSystem : MonoBehaviour
 
 
 
+    private void InteractSystem(InputAction.CallbackContext context)
+    {
 
+
+        OnInteractionPressed?.Invoke();
+
+        Debug.Log("Pressed E");
+    }
 
 }
