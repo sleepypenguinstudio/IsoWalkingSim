@@ -22,7 +22,8 @@ public class AudioController : MonoBehaviour
 
     public void PlayAudio(AudioSource audioSource,AudioClip audioClip)
     {
-
+        audioSource.clip = audioClip;
+        audioSource.Play();
     }
 
 
