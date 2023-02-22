@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
@@ -100,18 +101,18 @@ namespace StarterAssets
         private int _animIDMotionSpeed;
 
 
-        
 
-        public QuestManager questManager;
-  
 
-#if ENABLE_INPUT_SYSTEM 
+
+#if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
 #endif
         private Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
+
+        private QuestUIManager questUIManager;
 
         private const float _threshold = 0.01f;
 
@@ -137,6 +138,8 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+
+           
         }
 
         private void Start()
@@ -158,7 +161,10 @@ namespace StarterAssets
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
 
-           
+            questUIManager = FindObjectOfType<QuestUIManager>();
+
+
+
         }
 
         private void Update()
@@ -168,15 +174,16 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Quest newQuest = new Quest("New Quest", "Description of new quest", new List<string> { "Objective 1", "Objective 2" }, 100);
-                questManager.AddQuest(newQuest);
-              
-                Debug.Log("skjck");
-            }
-        }
 
+            if (Input.GetKeyDown(KeyCode.K) && questUIManager != null)
+            {
+                questUIManager.ChangeDisplayText();
+            }
+
+
+
+        }
+       
         private void LateUpdate()
         {
             CameraRotation();
@@ -397,6 +404,9 @@ namespace StarterAssets
             }
         }
 
+
+       
+        
         private void OnLand(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
@@ -404,5 +414,20 @@ namespace StarterAssets
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
         }
+
+
+
+        //private void OnTriggerEnter(Collider other)
+        //{
+        //    NPCController npc = other.GetComponent<NPCController>();
+        //    npc.Interact();
+
+        //    BallController ball = other.GetComponent<BallController>();
+        //    if (ball != null && ball.IsInteractable)
+        //    {
+        //        GameManager.Instance.InteractWithBall(ball);
+        //    }
+        //}
     }
+
 }
