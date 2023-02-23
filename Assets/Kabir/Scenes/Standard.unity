@@ -163,7 +163,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: b77dbcf466f3c424b8629799b5d00883,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 0.946
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: b77dbcf466f3c424b8629799b5d00883,
         type: 3}
@@ -394,6 +394,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OldWoman@OldWomanIdle
       objectReference: {fileID: 0}
+    - target: {fileID: 1795092730153472222, guid: 9215214ff0032b943bd7e379392a1c14,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1df08119b9b3804cb9864090fc50965, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9215214ff0032b943bd7e379392a1c14, type: 3}
 --- !u!1 &948001033 stripped
@@ -422,6 +427,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &948001035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948001033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f5c1ded7e7f36846bcca050271c0369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 948001034}
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
