@@ -5,7 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
-  - QuestGiver
+  - Ground
+  - Props
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -13,10 +15,10 @@ TagManager:
   - 
   - Water
   - UI
-  - minimap
-  - player
-  - indicator
-  - QuestGiver
+  - Ground
+  - 
+  - 
+  - 
   - 
   - 
   - 
