@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class Minimap : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform player;
+    public CinemachineVirtualCamera cineMachineMiniMapCamera;
     public Camera miniMapCamera;
     public RawImage miniMapImage;
     public GameObject miniMappointerImage;
@@ -36,10 +38,10 @@ public class Minimap : MonoBehaviour
     {
         // Update the position of the mini map camera to follow the player
         miniMappointerImage.transform.position = new Vector3(player.position.x, player.position.y + 1, player.position.z);
-        miniMapCamera.transform.position = new Vector3(player.position.x, miniMapCamera.transform.position.y, player.position.z);
+        cineMachineMiniMapCamera.transform.position = new Vector3(player.position.x, cineMachineMiniMapCamera.transform.position.y, player.position.z);
 
         // Rotate the mini map camera to match the orientation of the player
-        miniMapCamera.transform.rotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
+        cineMachineMiniMapCamera.transform.rotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
 
 
     }
