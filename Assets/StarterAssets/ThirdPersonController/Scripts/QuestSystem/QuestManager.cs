@@ -7,11 +7,17 @@ public class QuestManager : MonoBehaviour
 
     public void AddQuest(Quest quest)
     {
+
+
+      
         if (!quests.Contains(quest))
         {
             quests.Add(quest);
+            quest.isActive = true;
+            
         }
     }
+
 
     public void RemoveQuest(Quest quest)
     {
@@ -21,12 +27,18 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void CompleteQuest(Quest quest)
+    public void CompleteQuest()
     {
-        if (quests.Contains(quest))
-        {
-            quests.Remove(quest);
-            // Add code to give player rewards or do other actions upon completing quest
-        }
+       
+
+            Quest activeQuest = quests.Find(q => q.isActive);
+            if (activeQuest != null)
+            {
+                activeQuest.Complete();
+            }
+
+        
     }
 }
+
+

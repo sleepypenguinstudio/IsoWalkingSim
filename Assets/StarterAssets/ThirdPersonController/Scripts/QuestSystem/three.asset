@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03277ca78abde0d4796543fd2ed69190, type: 3}
-  m_Name: one
+  m_Name: three
   m_EditorClassIdentifier: 
   isActive: 0
-  questTitle: 'get me a rose '
-  icon: {fileID: 21300000, guid: 92b204cca46037444ab18ba6701f86f7, type: 3}
+  questTitle: huh ! look at you
+  icon: {fileID: 21300000, guid: ae53a7884da90e94eb5dfeab594b746c, type: 3}

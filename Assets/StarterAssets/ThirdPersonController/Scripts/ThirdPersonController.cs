@@ -113,6 +113,7 @@ namespace StarterAssets
         private GameObject _mainCamera;
 
         private QuestUIManager questUIManager;
+        private QuestManager questManager;
 
         private const float _threshold = 0.01f;
 
@@ -162,7 +163,7 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
 
             questUIManager = FindObjectOfType<QuestUIManager>();
-
+            questManager = FindObjectOfType<QuestManager>();
 
 
         }
@@ -176,8 +177,16 @@ namespace StarterAssets
             Move();
 
             if (Input.GetKeyDown(KeyCode.K) && questUIManager != null)
-            {
+            {   
+
+
+
                 questUIManager.ChangeDisplayText();
+                questManager.CompleteQuest();
+                
+
+
+
             }
 
 

@@ -13,5 +13,6 @@ public class QuestItemUI : MonoBehaviour
         questTitleText.text = quest.questTitle;
 
         iconImage.sprite = quest.icon;
+        quest.Complete();
     }
 }
