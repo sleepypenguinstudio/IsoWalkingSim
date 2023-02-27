@@ -9,7 +9,7 @@ public class OldWomanBlendTreeController : MonoBehaviour
 
     private void Start()
     {
-        PlayAnimationWithFloat(animator, floatParameterName, 1f);
+        //PlayAnimationWithFloat(animator, floatParameterName, 1f);
     }
 
     public void PlayAnimationWithFloat(Animator animator, string floatParameterName, float floatIncrement)
