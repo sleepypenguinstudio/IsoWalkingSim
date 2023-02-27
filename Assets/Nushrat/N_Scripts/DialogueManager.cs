@@ -30,6 +30,7 @@ public class DialogueManager : MonoBehaviour
     bool isChoosing=false;
 
     CinemachineVirtualCamera dialogueCineMachineCamera;
+    [SerializeField] QuestGiver currentQuest;
 
 
 
@@ -78,10 +79,10 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera)
+    public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera,QuestGiver questGiver)
     {
 
-        SetCamera(cineMachineCamera);
+        SetQuestProperty(cineMachineCamera,questGiver);
 
         Player.GetComponent<PlayerInputSystem>().enabled = false;
         Debug.Log("yes");
@@ -93,6 +94,7 @@ public class DialogueManager : MonoBehaviour
         // dialoguePanel.SetActive(true);
 
         ContinueStory();
+       
 
     }
 
@@ -109,7 +111,8 @@ public class DialogueManager : MonoBehaviour
 
         Player.GetComponent<PlayerInputSystem>().enabled = true;
 
-        GetCamera().Priority = 8 ;
+
+        StartQuestProperty();
     }
 
     public void ContinueStory()
@@ -181,13 +184,22 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Here again");
         ContinueStory();
     }
-     public void SetCamera(CinemachineVirtualCamera cineMachineCamera)
+     public void SetQuestProperty(CinemachineVirtualCamera cineMachineCamera, QuestGiver questGiver)
     {
         dialogueCineMachineCamera = cineMachineCamera;
+        
+        currentQuest = questGiver;
     }
 
-    public CinemachineVirtualCamera GetCamera()
+    public void StartQuestProperty()
     {
-        return dialogueCineMachineCamera;
+
+
+        dialogueCineMachineCamera.Priority = 8;
+        if (currentQuest)
+        {
+            currentQuest.GiveQuest();
+        }
+       
     }
 }

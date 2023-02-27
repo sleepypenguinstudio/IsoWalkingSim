@@ -8,18 +8,24 @@ public class QuestGiver : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            QuestManager questManager = FindObjectOfType<QuestManager>();
-            if (questManager != null)
-            {
-                questManager.AddQuest(quest);
-                QuestUIManager questUIManager = FindObjectOfType<QuestUIManager>();
-                if (questUIManager != null)
-                {
-                    questUIManager.DisplayQuest(quest);
-                }
-            }
-
-            Destroy(gameObject);
+           // GiveQuest();
         }
+    }
+
+
+    public void GiveQuest()
+    {
+        QuestManager questManager = FindObjectOfType<QuestManager>();
+        if (questManager != null)
+        {
+            questManager.AddQuest(quest);
+            QuestUIManager questUIManager = FindObjectOfType<QuestUIManager>();
+            if (questUIManager != null)
+            {
+                questUIManager.DisplayQuest(quest);
+            }
+        }
+
+      //  Destroy(gameObject);
     }
 }
