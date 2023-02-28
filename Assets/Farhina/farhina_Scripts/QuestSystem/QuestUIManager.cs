@@ -1,3 +1,5 @@
+using Mono.Cecil.Cil;
+using System.Numerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,8 +25,8 @@ public class QuestUIManager : MonoBehaviour
         isDisplayingTitle = !isDisplayingTitle;
         if (isDisplayingTitle)
         {
-            questTitleText.text ="complete";
-            iconImage.gameObject.SetActive(false);
+            questTitleText.text = "complete";
+            iconImage.gameObject.SetActive(true);
 
 
         }
@@ -32,9 +34,8 @@ public class QuestUIManager : MonoBehaviour
         {
             questTitleText.text = "complete";
             iconImage.gameObject.SetActive(false);
-
-
         }
+
+
     }
 }
-

@@ -17,7 +17,9 @@ public class QuestGiver : MonoBehaviour
     {
         Debug.Log("Quest");
         QuestManager questManager = FindObjectOfType<QuestManager>();
-        if (questManager != null)
+
+
+        if (questManager.quests.Count == 0 || questManager.quests[questManager.quests.Count - 1].isActive == false)
         {
             questManager.AddQuest(quest);
             QuestUIManager questUIManager = FindObjectOfType<QuestUIManager>();
@@ -25,8 +27,11 @@ public class QuestGiver : MonoBehaviour
             {
                 questUIManager.DisplayQuest(quest);
             }
+
+            Destroy(gameObject);
+
         }
 
-      //  Destroy(gameObject);
+        //  Destroy(gameObject);
     }
 }
