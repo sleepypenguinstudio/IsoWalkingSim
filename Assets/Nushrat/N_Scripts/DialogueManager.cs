@@ -16,6 +16,7 @@ public class DialogueManager : MonoBehaviour
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
+    private bool questActive;
 
     public Animator dialoganimator;
 
@@ -79,7 +80,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera,QuestGiver questGiver)
+    public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera,QuestGiver questGiver,bool questActive,bool isBranch)
     {
 
         SetQuestProperty(cineMachineCamera,questGiver);
@@ -196,8 +197,14 @@ public class DialogueManager : MonoBehaviour
 
 
         dialogueCineMachineCamera.Priority = 8;
+
+
         
             currentQuest.GiveQuest();
+
+        
+
+           
         
        
     }

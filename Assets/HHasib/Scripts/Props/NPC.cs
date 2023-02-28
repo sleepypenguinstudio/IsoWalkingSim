@@ -5,9 +5,15 @@ using Cinemachine;
 public class NPC : MonoBehaviour,IInteractable
 {
     [Header("Ink JSON")]
-    [SerializeField] private TextAsset inkJSON;
+    [SerializeField] private TextAsset[] inkJSON;
     CinemachineVirtualCamera cineMachineCamera;
     [SerializeField] QuestGiver questGiver;
+
+
+
+    
+
+
     
     private void Awake()
     {
@@ -18,8 +24,21 @@ public class NPC : MonoBehaviour,IInteractable
     public void NPCAction()
     {
         cineMachineCamera.Priority = 13;
+
+        if (Quest_Class.instance.currentState == Quest_Class.QuestState.BeforeQuest)
+        {
+            DialogueManager.instance.EnterDialogueMode(inkJSON[0], cineMachineCamera, questGiver,false);
+        }
+        else if (Quest_Class.instance.currentState == Quest_Class.QuestState.QuestComplete)
+        {
+
+        }
+        else if (Quest_Class.instance.currentState == Quest_Class.QuestState.AfterQuest)
+        {
+
+        }
         
-        DialogueManager.instance.EnterDialogueMode(inkJSON,cineMachineCamera,questGiver);
+       
 
       // cineMachineCamera.Priority = 8;
         
