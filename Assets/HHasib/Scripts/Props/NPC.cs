@@ -12,13 +12,13 @@ public class NPC : MonoBehaviour,IInteractable
     private void Awake()
     {
         cineMachineCamera = gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
-        questGiver = GetComponent<QuestGiver>();
+       // questGiver = GetComponent<QuestGiver>();
     }
 
     public void NPCAction()
     {
         cineMachineCamera.Priority = 13;
-        questGiver = GetComponent<QuestGiver>();
+        
         DialogueManager.instance.EnterDialogueMode(inkJSON,cineMachineCamera,questGiver);
 
       // cineMachineCamera.Priority = 8;

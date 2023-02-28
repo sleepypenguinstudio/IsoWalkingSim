@@ -30,7 +30,7 @@ public class DialogueManager : MonoBehaviour
     bool isChoosing=false;
 
     CinemachineVirtualCamera dialogueCineMachineCamera;
-    [SerializeField] QuestGiver currentQuest;
+    QuestGiver currentQuest;
 
 
 
@@ -133,7 +133,7 @@ public class DialogueManager : MonoBehaviour
     private void DisplayChoices()
     {
 
-        Debug.Log("Ami display");
+       
         List<Choice> currentChoices = currentStory.currentChoices;
 
         // defensive check to make sure our UI can support the number of choices coming in
@@ -181,7 +181,7 @@ public class DialogueManager : MonoBehaviour
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
         isChoosing = false;
-        Debug.Log("Here again");
+       
         ContinueStory();
     }
      public void SetQuestProperty(CinemachineVirtualCamera cineMachineCamera, QuestGiver questGiver)
@@ -196,10 +196,9 @@ public class DialogueManager : MonoBehaviour
 
 
         dialogueCineMachineCamera.Priority = 8;
-        if (currentQuest)
-        {
+        
             currentQuest.GiveQuest();
-        }
+        
        
     }
 }

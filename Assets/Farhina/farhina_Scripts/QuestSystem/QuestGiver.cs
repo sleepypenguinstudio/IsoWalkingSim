@@ -15,6 +15,7 @@ public class QuestGiver : MonoBehaviour
 
     public void GiveQuest()
     {
+        Debug.Log("Quest");
         QuestManager questManager = FindObjectOfType<QuestManager>();
         if (questManager != null)
         {
