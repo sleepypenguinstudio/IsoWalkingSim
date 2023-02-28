@@ -8,11 +8,14 @@ public class Quest_Class : MonoBehaviour
     {
         BeforeQuest,
         AmidQuest,
+        QuestFetched,
         QuestComplete,
-        AfterQuest
+        AfterQuest,
+        
     }
 
     public QuestState currentState;
+    public bool isQuestActive = false;
 
     // NpcState;
     public static Quest_Class instance;

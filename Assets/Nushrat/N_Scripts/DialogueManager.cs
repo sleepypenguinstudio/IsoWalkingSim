@@ -16,7 +16,7 @@ public class DialogueManager : MonoBehaviour
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
-    private bool questActive;
+ 
 
     public Animator dialoganimator;
 
@@ -80,7 +80,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera,QuestGiver questGiver,bool questActive,bool isBranch)
+    public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera,QuestGiver questGiver)
     {
 
         SetQuestProperty(cineMachineCamera,questGiver);
@@ -112,8 +112,16 @@ public class DialogueManager : MonoBehaviour
 
         Player.GetComponent<PlayerInputSystem>().enabled = true;
 
-
-        StartQuestProperty();
+        if (!Quest_Class.instance.isQuestActive)
+        {
+            StartQuestProperty();
+            Quest_Class.instance.currentState = Quest_Class.QuestState.AmidQuest;
+            Quest_Class.instance.isQuestActive = true;
+        }
+        else
+        {
+            StartQuestProperty();
+        }
     }
 
     public void ContinueStory()
@@ -188,19 +196,25 @@ public class DialogueManager : MonoBehaviour
      public void SetQuestProperty(CinemachineVirtualCamera cineMachineCamera, QuestGiver questGiver)
     {
         dialogueCineMachineCamera = cineMachineCamera;
-        
+
+       
+
         currentQuest = questGiver;
+
     }
 
     public void StartQuestProperty()
     {
 
 
-        dialogueCineMachineCamera.Priority = 8;
+          dialogueCineMachineCamera.Priority = 8;
 
 
-        
+        if (!Quest_Class.instance.isQuestActive)
+        {
             currentQuest.GiveQuest();
+        }
+       
 
         
 
