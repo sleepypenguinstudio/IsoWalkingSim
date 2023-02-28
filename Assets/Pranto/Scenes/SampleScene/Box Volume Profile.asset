@@ -103,7 +103,7 @@ MonoBehaviour:
   master:
     m_OverrideState: 1
     m_Value:
-      <length>k__BackingField: 2
+      <length>k__BackingField: 3
       m_Loop: 0
       m_ZeroValue: 0
       m_Range: 1
@@ -124,6 +124,15 @@ MonoBehaviour:
           value: 0.5069767
           inSlope: 0.6327746
           outSlope: 0.6327746
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.81333333
+          value: 0.75348836
+          inSlope: 2.406977
+          outSlope: 2.406977
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -291,19 +300,19 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.12441679}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 1, y: 1, z: 1, w: 0.062208403}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_Value: {x: 1, y: 1, z: 1, w: 0.21772943}
   shadowsStart:
     m_OverrideState: 1
     m_Value: 0
   shadowsEnd:
     m_OverrideState: 1
-    m_Value: 0.3
+    m_Value: 0.36
   highlightsStart:
     m_OverrideState: 1
     m_Value: 0.55
@@ -353,13 +362,13 @@ MonoBehaviour:
     m_Value: 65472
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.9716981, g: 0.78234816, b: 0.5454343, a: 1}
+    m_Value: {r: 0.8301887, g: 0.6383055, b: 0.40334642, a: 1}
   highQualityFiltering:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   skipIterations:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 5
   dirtTexture:
     m_OverrideState: 1
     m_Value: {fileID: 0}
