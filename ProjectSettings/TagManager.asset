@@ -5,7 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
+<<<<<<< HEAD
   - QuestGiver
+=======
+  - Ground
+>>>>>>> origin/pranto_level_design
   layers:
   - Default
   - TransparentFX
@@ -13,10 +17,17 @@ TagManager:
   - 
   - Water
   - UI
+<<<<<<< HEAD
   - minimap
   - player
   - indicator
   - QuestGiver
+=======
+  - Ground
+  - 
+  - 
+  - 
+>>>>>>> origin/pranto_level_design
   - 
   - 
   - 
