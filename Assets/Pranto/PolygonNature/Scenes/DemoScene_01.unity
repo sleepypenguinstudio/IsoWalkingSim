@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18121839, g: 0.22681513, b: 0.3073396, a: 1}
+  m_IndirectSpecularColor: {r: 0.18121877, g: 0.22681566, b: 0.30734056, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19431,6 +19431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentNpcState: 0
+  isQuestDone: 0
 --- !u!1001 &699198411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26134,19 +26135,34 @@ PrefabInstance:
       objectReference: {fileID: 1480383009}
     - target: {fileID: 5093823676167717596, guid: e32ed2fc762aa144188c3260e7ae2370,
         type: 3}
+      propertyPath: inkJSON.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093823676167717596, guid: e32ed2fc762aa144188c3260e7ae2370,
+        type: 3}
       propertyPath: inkJSON.Array.data[0]
       value: 
-      objectReference: {fileID: 4900000, guid: f178a75c52b199f4094a47963333738e, type: 3}
+      objectReference: {fileID: 4900000, guid: 77a2eb4afccd38643a577069f0992e16, type: 3}
     - target: {fileID: 5093823676167717596, guid: e32ed2fc762aa144188c3260e7ae2370,
         type: 3}
       propertyPath: inkJSON.Array.data[1]
       value: 
-      objectReference: {fileID: 4900000, guid: a2b3587a234d7314d9e4bee16fa3e035, type: 3}
+      objectReference: {fileID: 4900000, guid: f178a75c52b199f4094a47963333738e, type: 3}
     - target: {fileID: 5093823676167717596, guid: e32ed2fc762aa144188c3260e7ae2370,
         type: 3}
       propertyPath: inkJSON.Array.data[2]
       value: 
-      objectReference: {fileID: 4900000, guid: 77a2eb4afccd38643a577069f0992e16, type: 3}
+      objectReference: {fileID: 4900000, guid: a2b3587a234d7314d9e4bee16fa3e035, type: 3}
+    - target: {fileID: 5093823676167717596, guid: e32ed2fc762aa144188c3260e7ae2370,
+        type: 3}
+      propertyPath: inkJSON.Array.data[3]
+      value: 
+      objectReference: {fileID: 4900000, guid: c70d0a84d1a1d4948b97cf03555e8818, type: 3}
+    - target: {fileID: 5093823676167717596, guid: e32ed2fc762aa144188c3260e7ae2370,
+        type: 3}
+      propertyPath: inkJSON.Array.data[4]
+      value: 
+      objectReference: {fileID: 4900000, guid: 2c807315aed64e04fa51a6cd39a556da, type: 3}
     - target: {fileID: 5093823676167717597, guid: e32ed2fc762aa144188c3260e7ae2370,
         type: 3}
       propertyPath: m_RootOrder
@@ -49885,6 +49901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentNpcState: 0
+  isQuestDone: 0
 --- !u!1001 &1733111100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63973,6 +63990,11 @@ PrefabInstance:
       objectReference: {fileID: 387778649}
     - target: {fileID: 5093823676167717596, guid: e32ed2fc762aa144188c3260e7ae2370,
         type: 3}
+      propertyPath: inkJSON.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093823676167717596, guid: e32ed2fc762aa144188c3260e7ae2370,
+        type: 3}
       propertyPath: inkJSON.Array.data[0]
       value: 
       objectReference: {fileID: 4900000, guid: 77a2eb4afccd38643a577069f0992e16, type: 3}
@@ -63986,6 +64008,16 @@ PrefabInstance:
       propertyPath: inkJSON.Array.data[2]
       value: 
       objectReference: {fileID: 4900000, guid: a2b3587a234d7314d9e4bee16fa3e035, type: 3}
+    - target: {fileID: 5093823676167717596, guid: e32ed2fc762aa144188c3260e7ae2370,
+        type: 3}
+      propertyPath: inkJSON.Array.data[3]
+      value: 
+      objectReference: {fileID: 4900000, guid: c70d0a84d1a1d4948b97cf03555e8818, type: 3}
+    - target: {fileID: 5093823676167717596, guid: e32ed2fc762aa144188c3260e7ae2370,
+        type: 3}
+      propertyPath: inkJSON.Array.data[4]
+      value: 
+      objectReference: {fileID: 4900000, guid: 2c807315aed64e04fa51a6cd39a556da, type: 3}
     - target: {fileID: 5093823676167717597, guid: e32ed2fc762aa144188c3260e7ae2370,
         type: 3}
       propertyPath: m_RootOrder

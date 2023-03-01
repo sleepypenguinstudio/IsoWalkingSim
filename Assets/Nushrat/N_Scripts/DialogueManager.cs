@@ -5,6 +5,7 @@ using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
 using Cinemachine;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -35,6 +36,11 @@ public class DialogueManager : MonoBehaviour
     NPC_Class currentNpc;
 
 
+
+
+
+
+    
 
 
     private void Awake()
