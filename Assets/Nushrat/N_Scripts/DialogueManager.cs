@@ -5,18 +5,29 @@ using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
 using Cinemachine;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI displayNameText;
+    [SerializeField] private Animator potraitAnimator;
 
 
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
- 
+
+
+
+    private const string SpeakerTag = "speaker";
+    private const string PotraitTag = "potrait";
+
+
+
+
 
     public Animator dialoganimator;
 
@@ -96,6 +107,10 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         // dialoguePanel.SetActive(true);
 
+        displayNameText.text = "Name";
+        potraitAnimator.Play("PotraitDefaultAnimation");
+
+
         ContinueStory();
        
 
@@ -129,7 +144,7 @@ public class DialogueManager : MonoBehaviour
         }
         else if(Quest_Class.instance.isQuestActive && !currentNpc.isQuestDone && currentNpc.CurrentNpcState == NPC_Class.NpcState.NpcCompleteQuest )
         {
-
+             
             currentNpc.isQuestDone = true;
             Quest_Class.instance.isQuestActive = false;
             currentNpc.CurrentNpcState = NPC_Class.NpcState.NpcAfterQuest;
@@ -154,12 +169,45 @@ public class DialogueManager : MonoBehaviour
 
             DisplayChoices();
 
+            HandleTags(currentStory.currentTags);    
+
         }
         else
         {
             StartCoroutine(ExitDialogueMode());
         }
     }
+
+    private void HandleTags(List<string> currentTags)
+    {
+        foreach (string tag in currentTags)
+        {
+            string[] splitTag = tag.Split(':');
+            if(splitTag.Length != 2)
+            {
+                Debug.LogError("Tag couldn't be parsed appropriately" + tag);
+
+            }
+
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            switch(tagKey)
+            {
+                case SpeakerTag:
+
+                    displayNameText.text = tagValue;
+                    //Debug.Log("Speaker:" + tagValue);
+                    break;
+                case PotraitTag:
+                    potraitAnimator.Play(tagValue);
+                    //Debug.Log("potrait:" + tagValue);
+                    break;
+            }
+        }
+    }
+
+
 
     private void DisplayChoices()
     {
