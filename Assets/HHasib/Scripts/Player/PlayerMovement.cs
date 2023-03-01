@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         AssignAnimationID();
+
+        transform.position = SaveMechanics.instance.GetPlayerPostion();
     }
 
     private void Update()
@@ -90,9 +92,11 @@ public class PlayerMovement : MonoBehaviour
 
                 pointToMove = rayCastHit.point;
                 agent.SetDestination(rayCastHit.point);
-               
+
+                Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y,transform.position.z);
 
 
+                SaveMechanics.instance.SavePlayerPosition(playerPosition);
 
             }
         }

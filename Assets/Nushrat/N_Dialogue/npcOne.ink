@@ -1,2 +1,2 @@
-﻿one
-ooooooo
+﻿Ami
+Quest dilam

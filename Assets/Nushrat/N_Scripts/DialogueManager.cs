@@ -32,6 +32,8 @@ public class DialogueManager : MonoBehaviour
 
     CinemachineVirtualCamera dialogueCineMachineCamera;
     QuestGiver currentQuest;
+    NPC_Class currentNpc;
+
 
 
 
@@ -80,10 +82,10 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera,QuestGiver questGiver)
+    public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera,QuestGiver questGiver, NPC_Class npc_Class)
     {
 
-        SetQuestProperty(cineMachineCamera,questGiver);
+        SetQuestProperty(cineMachineCamera,questGiver,npc_Class);
 
         Player.GetComponent<PlayerInputSystem>().enabled = false;
         Debug.Log("yes");
@@ -112,16 +114,36 @@ public class DialogueManager : MonoBehaviour
 
         Player.GetComponent<PlayerInputSystem>().enabled = true;
 
-        if (!Quest_Class.instance.isQuestActive)
+        if (!Quest_Class.instance.isQuestActive && !currentNpc.isQuestDone)
         {
             StartQuestProperty();
-            Quest_Class.instance.currentState = Quest_Class.QuestState.AmidQuest;
+            Quest_Class.instance.CurrentState = Quest_Class.QuestState.AmidQuest;
             Quest_Class.instance.isQuestActive = true;
+            currentNpc.CurrentNpcState = NPC_Class.NpcState.NpcAmidQuest;
+        }
+        else if (Quest_Class.instance.CurrentState == Quest_Class.QuestState.AmidQuest && currentNpc.CurrentNpcState == NPC_Class.NpcState.NpcAmidQuest)
+        {
+            
+                StartQuestProperty();
+            
+        }
+        else if(Quest_Class.instance.isQuestActive && !currentNpc.isQuestDone && currentNpc.CurrentNpcState == NPC_Class.NpcState.NpcCompleteQuest )
+        {
+
+            currentNpc.isQuestDone = true;
+            Quest_Class.instance.isQuestActive = false;
+            currentNpc.CurrentNpcState = NPC_Class.NpcState.NpcAfterQuest;
+            Quest_Class.instance.CurrentState = Quest_Class.QuestState.BeforeQuest;
+            StartQuestProperty();
+            Debug.Log("Kaj  sesh");
+
+
         }
         else
         {
             StartQuestProperty();
         }
+        
     }
 
     public void ContinueStory()
@@ -193,14 +215,14 @@ public class DialogueManager : MonoBehaviour
        
         ContinueStory();
     }
-     public void SetQuestProperty(CinemachineVirtualCamera cineMachineCamera, QuestGiver questGiver)
+     public void SetQuestProperty(CinemachineVirtualCamera cineMachineCamera, QuestGiver questGiver,NPC_Class npc_Class)
     {
         dialogueCineMachineCamera = cineMachineCamera;
 
        
 
         currentQuest = questGiver;
-
+        currentNpc = npc_Class;
     }
 
     public void StartQuestProperty()
@@ -210,7 +232,7 @@ public class DialogueManager : MonoBehaviour
           dialogueCineMachineCamera.Priority = 8;
 
 
-        if (!Quest_Class.instance.isQuestActive)
+        if (!Quest_Class.instance.isQuestActive && !currentNpc.isQuestDone)
         {
             currentQuest.GiveQuest();
         }

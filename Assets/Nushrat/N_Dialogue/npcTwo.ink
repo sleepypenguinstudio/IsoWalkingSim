@@ -1,2 +1,1 @@
-﻿two
-ttttttttttttttttttttttttttt
+﻿Jao ano giye

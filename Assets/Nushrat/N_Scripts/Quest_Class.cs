@@ -10,19 +10,20 @@ public class Quest_Class : MonoBehaviour
         AmidQuest,
         QuestFetched,
         QuestComplete,
-        AfterQuest,
+        
         
     }
 
-    public QuestState currentState;
+    public QuestState CurrentState;
     public bool isQuestActive = false;
+    public bool isQuestComplete = false;
 
     // NpcState;
     public static Quest_Class instance;
 
     private void Awake()
     {
-        currentState = QuestState.BeforeQuest;
+        CurrentState = QuestState.BeforeQuest;
 
         if (instance != null)
         {
