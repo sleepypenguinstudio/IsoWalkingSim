@@ -30,4 +30,25 @@ public class ScreenFader : MonoBehaviour
 
         fadeImage.gameObject.SetActive(false);
     }
+
+    public IEnumerator FadeOut(string sceneName)
+    {
+        fadeImage.gameObject.SetActive(true);
+
+        Color color = fadeImage.color;
+
+        float timer = 0f;
+        while (timer < fadeDuration)
+        {
+            float alpha = Mathf.Lerp(0f, 1f, timer / fadeDuration);
+            color.a = alpha;
+            fadeImage.color = color;
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        SceneManager.LoadScene(sceneName);
+    }
+
 }
