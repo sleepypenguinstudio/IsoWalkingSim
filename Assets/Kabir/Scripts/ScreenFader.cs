@@ -11,6 +11,7 @@ public class ScreenFader : MonoBehaviour
     private void Start()
     {
         StartCoroutine(FadeIn());
+        //StartCoroutine(FadeOut("SampleScene"));
     }
 
     public IEnumerator FadeIn()
