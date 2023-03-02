@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine.Rendering;
+using System;
 
 public class SceneManager : MonoBehaviour
 {
@@ -19,12 +20,12 @@ public class SceneManager : MonoBehaviour
     public Camera gameplayCamera;
     private CinemachineBrain cinemachineBrain;
     private bool gamePaused = false;
-   
+  
 
 
 
 
-   
+
     void Start()
     {
         // Start with the main menu camera enabled and the gameplay camera disabled
@@ -65,12 +66,14 @@ public class SceneManager : MonoBehaviour
 
     public void PushPanel(GameObject panel)
     {
+        
         if (panelStack.Count > 0)
         {
             panelStack.Peek().SetActive(false);
         }
         panelStack.Push(panel);
         panel.SetActive(true);
+      
 
     }
 
