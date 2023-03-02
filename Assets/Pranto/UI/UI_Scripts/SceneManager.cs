@@ -113,47 +113,16 @@ public class SceneManager : MonoBehaviour
         TransitionToPanel(previousPanel);
     }
 
-    public void PushPanel(GameObject panel)
-    {
-        
-        if (panelStack.Count > 0)
-        {
-            panelStack.Peek().SetActive(false);
-        }
-        panelStack.Push(panel);
-        panel.SetActive(true);
-      
-
-    }
-
-    public void PopPanel()
-    {
-        if (panelStack.Count > 0)
-        {
-            GameObject previousPanel = panelStack.Pop();
-            previousPanel.SetActive(false);
-            if (panelStack.Count > 0)
-            {
-                panelStack.Peek().SetActive(true);
-            }
-        }
-    }
+    
     public void OnResumeButtonPressed()
     {
         Time.timeScale = 1;
-       
+        canvas.gameObject.SetActive(false);
         gameplayCamera.enabled = true;
         cinemachineBrain.enabled = true;
         gamePaused = false;
     }
-    public void OnBackButtonPressed()
-    {
-        
-        Debug.Log("Play button pressed!");
-        mainMenuCamera.enabled = true;
-        gameplayCamera.enabled = false;
-        cinemachineBrain.enabled = false;
-    }
+   
 
     public void OnPlayButtonPressed()
     {
@@ -166,23 +135,10 @@ public class SceneManager : MonoBehaviour
     }
 
 
-    public void OnOptionButtonPressed()
-    {
- 
-        optionPanel.gameObject.SetActive(true) ;
-        MainMenuPanel.gameObject.SetActive(false) ; 
-
-    }
-    public void BackButtonPressed()
-    {
-
-        optionPanel.gameObject.SetActive(false);
-        MainMenuPanel.gameObject.SetActive(true);
-
-    }
+   
     public void OnQuitButtonPressed()
     {
-        // Quit the game
+        
         Application.Quit();
     }
 
