@@ -49,7 +49,7 @@ public class ScreenFader : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene(sceneName);
+       // SceneManager.LoadScene(sceneName);
     }
 
 }

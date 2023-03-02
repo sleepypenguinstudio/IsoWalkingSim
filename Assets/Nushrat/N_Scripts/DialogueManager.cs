@@ -44,6 +44,7 @@ public class DialogueManager : MonoBehaviour
     CinemachineVirtualCamera dialogueCineMachineCamera;
     QuestGiver currentQuest;
     NPC_Class currentNpc;
+    Animator currentNPCAnimator;
 
 
 
@@ -93,10 +94,11 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera,QuestGiver questGiver, NPC_Class npc_Class)
+    public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera,QuestGiver questGiver, NPC_Class npc_Class,Animator npc_animator)
     {
 
-        SetQuestProperty(cineMachineCamera,questGiver,npc_Class);
+        SetQuestProperty(cineMachineCamera,questGiver,npc_Class,npc_animator);
+        AnimationController.instance.PlayAnimation(currentNPCAnimator,"Blend",1);
 
         Player.GetComponent<PlayerInputSystem>().enabled = false;
         Debug.Log("yes");
@@ -158,7 +160,7 @@ public class DialogueManager : MonoBehaviour
         {
             StartQuestProperty();
         }
-        
+        AnimationController.instance.PlayAnimation(currentNPCAnimator, "Blend", 0);
     }
 
     public void ContinueStory()
@@ -263,7 +265,7 @@ public class DialogueManager : MonoBehaviour
        
         ContinueStory();
     }
-     public void SetQuestProperty(CinemachineVirtualCamera cineMachineCamera, QuestGiver questGiver,NPC_Class npc_Class)
+     public void SetQuestProperty(CinemachineVirtualCamera cineMachineCamera, QuestGiver questGiver,NPC_Class npc_Class,Animator npc_animator)
     {
         dialogueCineMachineCamera = cineMachineCamera;
 
@@ -271,6 +273,7 @@ public class DialogueManager : MonoBehaviour
 
         currentQuest = questGiver;
         currentNpc = npc_Class;
+        currentNPCAnimator = npc_animator;
     }
 
     public void StartQuestProperty()
