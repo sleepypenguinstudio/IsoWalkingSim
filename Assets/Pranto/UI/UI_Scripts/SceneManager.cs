@@ -10,7 +10,7 @@ public class SceneManager : MonoBehaviour
 {
 
     public Canvas canvas;
-    Stack<GameObject> panelStack = new Stack<GameObject>();
+    public Stack<GameObject> panelStack = new Stack<GameObject>();
     public GameObject mainmenuvolume;
     public GameObject gameplayvolume;
     public CanvasGroup optionPanel;
@@ -19,7 +19,12 @@ public class SceneManager : MonoBehaviour
     public Camera gameplayCamera;
     private CinemachineBrain cinemachineBrain;
     private bool gamePaused = false;
+   
 
+
+
+
+   
     void Start()
     {
         // Start with the main menu camera enabled and the gameplay camera disabled
@@ -56,6 +61,31 @@ public class SceneManager : MonoBehaviour
         }
     }
 
+
+
+    public void PushPanel(GameObject panel)
+    {
+        if (panelStack.Count > 0)
+        {
+            panelStack.Peek().SetActive(false);
+        }
+        panelStack.Push(panel);
+        panel.SetActive(true);
+
+    }
+
+    public void PopPanel()
+    {
+        if (panelStack.Count > 0)
+        {
+            GameObject previousPanel = panelStack.Pop();
+            previousPanel.SetActive(false);
+            if (panelStack.Count > 0)
+            {
+                panelStack.Peek().SetActive(true);
+            }
+        }
+    }
     public void OnResumeButtonPressed()
     {
         Time.timeScale = 1;
