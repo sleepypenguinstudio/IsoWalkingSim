@@ -6,7 +6,7 @@ using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine.Rendering;
 using System;
-
+using DG.Tweening;
 public class SceneManager : MonoBehaviour
 {
 
@@ -20,7 +20,12 @@ public class SceneManager : MonoBehaviour
     public Camera gameplayCamera;
     private CinemachineBrain cinemachineBrain;
     private bool gamePaused = false;
-  
+
+
+    public GameObject[] panels; // Array of panels to display
+    public int currentPanel = 0; // Index of initial panel to display
+    private int previousPanel = 0;
+
 
 
 
@@ -34,7 +39,12 @@ public class SceneManager : MonoBehaviour
         mainMenuCamera.enabled = true;
         gameplayCamera.enabled = false;
         cinemachineBrain.enabled = false;
-        
+
+        for (int i = 1; i < panels.Length; i++)
+        {
+            panels[i].SetActive(false);
+        }
+
     }
 
     void Update()
@@ -62,7 +72,46 @@ public class SceneManager : MonoBehaviour
         }
     }
 
+    void TransitionToPanel(int panelIndex)
+    {
+        // Get the current and target panels
+        GameObject current = panels[currentPanel];
+        GameObject target = panels[panelIndex];
 
+        // Slide the current panel out
+        current.transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.5f);
+
+        // Enable the target panel
+        target.SetActive(true);
+
+        // Scale up the target panel
+        target.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+        target.transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f);
+
+       
+
+        // Disable the current panel
+        current.SetActive(false);
+
+        // Update the current panel index and previous panel index
+        previousPanel = currentPanel;
+        currentPanel = panelIndex;
+    }
+
+    public void NextPanel()
+    {
+        int nextIndex = currentPanel + 1;
+        if (nextIndex >= panels.Length)
+        {
+            nextIndex = 0;
+        }
+        TransitionToPanel(nextIndex);
+    }
+
+    public void PreviousPanel()
+    {
+        TransitionToPanel(previousPanel);
+    }
 
     public void PushPanel(GameObject panel)
     {
