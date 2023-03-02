@@ -18,3 +18,24 @@ Don't want to go anywhere! #speaker:Player #potrait:PlayerPotrait
  	
 
 -> END
+
+
+//BoyPotrait
+//ManPotrait
+//OldLadyPotrait
+//PlayerPotrait
+//MotherPotrait
+//RockstarPotrait
+
+
+	+[I'm sorry to hear that. ]
+		I'm sorry to hear that. Did he come with you to the park? #speaker:Player #potrait:PlayerPotrait
+	
+	+[Can you tell me more? ]
+		I'm sorry to hear that. Did he come with you to the park? #speaker:Player #potrait:PlayerPotrait
+
+
+
+
+
+		I'm sorry to hear that. Did he come with you to the park? #speaker:Player #potrait:PlayerPotrait	

@@ -63970,7 +63970,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inkJSON.Array.data[0]
       value: 
-      objectReference: {fileID: 4900000, guid: de25dc2d41cd9564ca65e2b6d335c050, type: 3}
+      objectReference: {fileID: 4900000, guid: bfac34b99f19de044b1e8c60d38b1e93, type: 3}
     - target: {fileID: 5093823676167717596, guid: e32ed2fc762aa144188c3260e7ae2370,
         type: 3}
       propertyPath: inkJSON.Array.data[1]
