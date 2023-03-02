@@ -3,9 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using Unity.VisualScripting;
+using UnityEngine.Rendering;
 
 public class SceneManager : MonoBehaviour
 {
+
+    public Canvas canvas;
+    Stack<GameObject> panelStack = new Stack<GameObject>();
+    public GameObject mainmenuvolume;
+    public GameObject gameplayvolume;
+    public CanvasGroup optionPanel;
+    public CanvasGroup MainMenuPanel;
     public Camera mainMenuCamera;
     public Camera gameplayCamera;
     private CinemachineBrain cinemachineBrain;
@@ -19,7 +28,7 @@ public class SceneManager : MonoBehaviour
         mainMenuCamera.enabled = true;
         gameplayCamera.enabled = false;
         cinemachineBrain.enabled = false;
-        Debug.Log("hg");
+        
     }
 
     void Update()
@@ -31,7 +40,7 @@ public class SceneManager : MonoBehaviour
             {
                 // Unpause the game and switch to the gameplay camera
                 Time.timeScale = 1;
-                mainMenuCamera.enabled = false;
+                canvas.gameObject.SetActive(false);
                 gameplayCamera.enabled = true;
                 cinemachineBrain.enabled = true;
                 gamePaused = false;
@@ -40,23 +49,55 @@ public class SceneManager : MonoBehaviour
             {
                 // Pause the game and switch to the main menu camera
                 Time.timeScale = 0;
-                mainMenuCamera.enabled = true;
-                gameplayCamera.enabled = false;
-                cinemachineBrain.enabled = false;
+                canvas.gameObject.SetActive(true);
+
                 gamePaused = true;
             }
         }
     }
 
+    public void OnResumeButtonPressed()
+    {
+        Time.timeScale = 1;
+       
+        gameplayCamera.enabled = true;
+        cinemachineBrain.enabled = true;
+        gamePaused = false;
+    }
+    public void OnBackButtonPressed()
+    {
+        
+        Debug.Log("Play button pressed!");
+        mainMenuCamera.enabled = true;
+        gameplayCamera.enabled = false;
+        cinemachineBrain.enabled = false;
+    }
+
     public void OnPlayButtonPressed()
     {
-        // Switch to the gameplay camera
-        Debug.Log("Play button pressed!");
+
+        mainmenuvolume.SetActive(false) ;
+        gameplayvolume.SetActive(true);
         mainMenuCamera.enabled = false;
         gameplayCamera.enabled = true;
         cinemachineBrain.enabled = true;
     }
 
+
+    public void OnOptionButtonPressed()
+    {
+ 
+        optionPanel.gameObject.SetActive(true) ;
+        MainMenuPanel.gameObject.SetActive(false) ; 
+
+    }
+    public void BackButtonPressed()
+    {
+
+        optionPanel.gameObject.SetActive(false);
+        MainMenuPanel.gameObject.SetActive(true);
+
+    }
     public void OnQuitButtonPressed()
     {
         // Quit the game
