@@ -6,6 +6,7 @@ public class NPC : MonoBehaviour, IInteractable
 {
     [Header("Ink JSON")]
     [SerializeField] private TextAsset[] inkJSON;
+    [SerializeField] private TextAsset[] inkJSONMidQuest;
     CinemachineVirtualCamera cineMachineCamera;
     [SerializeField] QuestGiver questGiver;
     NPC_Class npcCurrentState;
@@ -47,7 +48,7 @@ public class NPC : MonoBehaviour, IInteractable
         }
         else if (Quest_Class.instance.CurrentState == Quest_Class.QuestState.AmidQuest && npcCurrentState.CurrentNpcState == NPC_Class.NpcState.NpcAmidQuest)
         {
-            DialogueManager.instance.EnterDialogueMode(inkJSON[1], cineMachineCamera, questGiver, npcCurrentState,npcAnimator);
+            DialogueManager.instance.EnterDialogueMode(inkJSONMidQuest[Random.Range(0,3)], cineMachineCamera, questGiver, npcCurrentState,npcAnimator);
         }
         else if (Quest_Class.instance.CurrentState == Quest_Class.QuestState.QuestFetched && npcCurrentState.CurrentNpcState == NPC_Class.NpcState.NpcCompleteQuest)
         {

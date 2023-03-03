@@ -25,13 +25,13 @@ This kid really got into my nerves. Anyways, all I have are red roses now.
 
 No, no it's okay I don't need any flowers... but do you need anything? #speaker:Player #potrait:PlayerPotrait
 
--*suspicious* What would I need from you? #speaker:Mother #potrait:MotherPotrait
+- suspicious* What would I need from you? #speaker:Mother #potrait:MotherPotrait
 
 No no nothing like that.... I just, I mean, you seem very stressed, is there anything I can do to help?  #speaker:Player #potrait:PlayerPotrait
 
 -Well yes actually I need to pick some more hyacinth, you know those small purple flowers? #speaker:Mother #potrait:MotherPotrait
 
-*nods* #speaker:Player #potrait:PlayerPotrait
+nods* #speaker:Player #potrait:PlayerPotrait
 
 -They grow on the other side of the park, but my brat son refuses to come with me. #speaker:Mother #potrait:MotherPotrait
 Of course you're not supposed to pick the flowers in the park....
