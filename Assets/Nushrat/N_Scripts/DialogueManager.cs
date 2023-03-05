@@ -48,6 +48,8 @@ public class DialogueManager : MonoBehaviour
     QuestGiver currentOnGoingQuest;
 
 
+    public bool InDialogue;
+
 
 
     private void Awake()
@@ -100,6 +102,7 @@ public class DialogueManager : MonoBehaviour
 
         SetQuestProperty(cineMachineCamera,questGiver,npc_Class,npc_animator);
         AnimationController.instance.PlayAnimation(currentNPCAnimator,"Blend",1);
+        InDialogue = true;
 
         Player.GetComponent<PlayerInputSystem>().enabled = false;
         Debug.Log("yes");
@@ -124,7 +127,7 @@ public class DialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0);
 
-        dialogueIsPlaying = false;
+        dialogueIsPlaying = true;
         // dialoguePanel.SetActive(false);
         dialogueText.text = "";
 
@@ -163,6 +166,7 @@ public class DialogueManager : MonoBehaviour
             StartQuestProperty();
         }
         AnimationController.instance.PlayAnimation(currentNPCAnimator, "Blend", 0);
+        InDialogue = false;
     }
 
     public void ContinueStory()
