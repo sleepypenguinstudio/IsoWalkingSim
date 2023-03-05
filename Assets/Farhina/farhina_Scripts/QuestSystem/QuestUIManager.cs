@@ -4,36 +4,47 @@ using UnityEngine.UI;
 
 public class QuestUIManager : MonoBehaviour
 {
-    public TMP_Text questTitleText;
+    //public TMP_Text QuestTitleText;
 
-    public Image iconImage;
+    //public Image iconImage;
 
-    private bool isDisplayingTitle = true;
+    //private bool isDisplayingTitle = true;
 
-    public void DisplayQuest(Quest quest)
+    //public void DisplayQuest(Quest quest)
+    //{
+    //    QuestTitleText.text = quest.QuestTitle;
+
+    //    iconImage.sprite = quest.Icon;
+
+    //}
+
+    //public void ChangeDisplayText()
+    //{
+    //    isDisplayingTitle = !isDisplayingTitle;
+    //    if (isDisplayingTitle)
+    //    {
+    //        QuestTitleText.text ="complete";
+    //        iconImage.gameObject.SetActive(false);
+
+
+    //    }
+    //    else
+    //    {
+    //        QuestTitleText.text = "complete";
+    //        iconImage.gameObject.SetActive(false);
+
+
+    //    }
+    //}
+
+    private void Update()
     {
-        questTitleText.text = quest.questTitle;
-
-        iconImage.sprite = quest.icon;
-
-    }
-
-    public void ChangeDisplayText()
-    {
-        isDisplayingTitle = !isDisplayingTitle;
-        if (isDisplayingTitle)
-        {
-            questTitleText.text ="complete";
-            iconImage.gameObject.SetActive(false);
-
-
+        if (DialogueManager.instance.ShowCurrentQuest()!=null) {
+            Debug.Log(DialogueManager.instance.ShowCurrentQuest().quest.QuestTask);
         }
         else
         {
-            questTitleText.text = "complete";
-            iconImage.gameObject.SetActive(false);
-
-
+            Debug.Log("Kaj nai kono");
         }
     }
 }

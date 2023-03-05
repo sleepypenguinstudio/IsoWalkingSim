@@ -45,6 +45,7 @@ public class DialogueManager : MonoBehaviour
     QuestGiver currentQuest;
     NPC_Class currentNpc;
     Animator currentNPCAnimator;
+    QuestGiver currentOnGoingQuest;
 
 
 
@@ -285,14 +286,25 @@ public class DialogueManager : MonoBehaviour
 
         if (!Quest_Class.instance.isQuestActive && !currentNpc.isQuestDone)
         {
-            currentQuest.GiveQuest();
+            // currentQuest.GiveQuest();
+            currentOnGoingQuest = currentQuest;
         }
        
+        if(Quest_Class.instance.isQuestActive && currentNpc.isQuestDone){
+            currentOnGoingQuest = null;
+        }
 
         
 
            
         
        
+    }
+
+
+
+    public QuestGiver ShowCurrentQuest()
+    {
+        return currentOnGoingQuest;
     }
 }

@@ -4,8 +4,9 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Quest", menuName = "Quest")]
 public class Quest : ScriptableObject
 {
-    public string questTitle;
+    public string QuestTitle;
     
-    public Sprite  icon;
+    public Sprite  Icon;
 
+    public string QuestTask;
 }
