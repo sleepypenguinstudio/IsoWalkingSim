@@ -109,8 +109,8 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = true;
         // dialoguePanel.SetActive(true);
 
-        displayNameText.text = "Name";
-        potraitAnimator.Play("PotraitDefaultAnimation");
+       // displayNameText.text = "Name";
+       // potraitAnimator.Play("PotraitDefaultAnimation");
 
 
         ContinueStory();

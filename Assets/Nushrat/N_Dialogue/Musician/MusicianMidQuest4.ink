@@ -3,7 +3,7 @@
 === main ===
 
 
-- Can you please hurry up? #speaker:Musician #potrait:RockstarPotrait
+Can you please hurry up? #speaker:Irshad #potrait:RockstarPotrait
 
 
 -> END
