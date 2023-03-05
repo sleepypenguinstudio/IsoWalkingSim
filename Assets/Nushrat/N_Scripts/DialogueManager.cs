@@ -45,6 +45,7 @@ public class DialogueManager : MonoBehaviour
     QuestGiver currentQuest;
     NPC_Class currentNpc;
     Animator currentNPCAnimator;
+    QuestGiver currentOnGoingQuest;
 
 
 
@@ -152,6 +153,7 @@ public class DialogueManager : MonoBehaviour
             currentNpc.CurrentNpcState = NPC_Class.NpcState.NpcAfterQuest;
             Quest_Class.instance.CurrentState = Quest_Class.QuestState.BeforeQuest;
             StartQuestProperty();
+           
             Debug.Log("Kaj  sesh");
 
 
@@ -285,14 +287,26 @@ public class DialogueManager : MonoBehaviour
 
         if (!Quest_Class.instance.isQuestActive && !currentNpc.isQuestDone)
         {
-            currentQuest.GiveQuest();
+            // currentQuest.GiveQuest();
+            currentOnGoingQuest = currentQuest;
         }
-       
+
+        else if(!Quest_Class.instance.isQuestActive && currentNpc.isQuestDone)
+        {
+            currentOnGoingQuest = null;
+        }
 
         
 
            
         
        
+    }
+
+
+
+    public QuestGiver ShowCurrentQuest()
+    {
+        return currentOnGoingQuest;
     }
 }

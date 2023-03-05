@@ -23,7 +23,7 @@ public class QuestGiver : MonoBehaviour
             QuestUIManager questUIManager = FindObjectOfType<QuestUIManager>();
             if (questUIManager != null)
             {
-                questUIManager.DisplayQuest(quest);
+               // questUIManager.DisplayQuest(quest);
             }
         }
 

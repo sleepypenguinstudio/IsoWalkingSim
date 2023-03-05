@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 public class QuestItemUI : MonoBehaviour
 {
-    public TMP_Text questTitleText;
+    public TMP_Text QuestTitleText;
 
     public Image iconImage;
 
     public void UpdateUI(Quest quest)
     {
-        questTitleText.text = quest.questTitle;
+        QuestTitleText.text = quest.QuestTitle;
 
-        iconImage.sprite = quest.icon;
+        iconImage.sprite = quest.Icon;
     }
 }
