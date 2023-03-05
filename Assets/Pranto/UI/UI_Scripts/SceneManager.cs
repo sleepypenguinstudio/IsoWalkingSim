@@ -6,10 +6,18 @@ using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine.Rendering;
 using System;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class SceneManager : MonoBehaviour
 {
 
+
+    public RectTransform panel1;
+    public RectTransform panel2;
+    public float transitionTime = 1f;
+
+    private bool isTransitioning = false;
     public Canvas canvas;
     public Stack<GameObject> panelStack = new Stack<GameObject>();
     public GameObject mainmenuvolume;
@@ -63,7 +71,31 @@ public class SceneManager : MonoBehaviour
     }
 
 
+    public void NextPanel()
+    {
+        if (isTransitioning) return;
 
+        isTransitioning = true;
+
+        Vector2 startPos1 = panel1.anchoredPosition;
+        Vector2 endPos1 = startPos1 - new Vector2(panel1.rect.width, 0);
+
+        Vector2 startPos2 = panel2.anchoredPosition;
+        Vector2 endPos2 = startPos2 - new Vector2(panel2.rect.width, 0);
+
+        panel1.DOAnchorPos(endPos1, transitionTime)
+            .OnComplete(() =>
+            {
+                panel1.gameObject.SetActive(false);
+                panel2.gameObject.SetActive(true);
+                panel2.anchoredPosition = startPos2;
+                panel2.DOAnchorPos(endPos2, transitionTime)
+                    .OnComplete(() =>
+                    {
+                        isTransitioning = false;
+                    });
+            });
+    }
     public void PushPanel(GameObject panel)
     {
         
