@@ -153,7 +153,7 @@ public class DialogueManager : MonoBehaviour
             currentNpc.CurrentNpcState = NPC_Class.NpcState.NpcAfterQuest;
             Quest_Class.instance.CurrentState = Quest_Class.QuestState.BeforeQuest;
             StartQuestProperty();
-            currentOnGoingQuest = null;
+           
             Debug.Log("Kaj  sesh");
 
 
@@ -290,8 +290,11 @@ public class DialogueManager : MonoBehaviour
             // currentQuest.GiveQuest();
             currentOnGoingQuest = currentQuest;
         }
-       
-       
+
+        else if(!Quest_Class.instance.isQuestActive && currentNpc.isQuestDone)
+        {
+            currentOnGoingQuest = null;
+        }
 
         
 
