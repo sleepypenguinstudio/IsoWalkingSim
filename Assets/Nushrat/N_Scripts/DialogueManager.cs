@@ -127,7 +127,7 @@ public class DialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0);
 
-        dialogueIsPlaying = true;
+        dialogueIsPlaying = false;
         // dialoguePanel.SetActive(false);
         dialogueText.text = "";
 

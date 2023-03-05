@@ -41,6 +41,7 @@ public class QuestUIManager : MonoBehaviour
     {
         if (DialogueManager.instance.ShowCurrentQuest()!=null) {
             Debug.Log(DialogueManager.instance.ShowCurrentQuest().quest.QuestTask);
+           
         }
         else
         {
