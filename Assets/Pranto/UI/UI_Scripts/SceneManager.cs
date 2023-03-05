@@ -7,17 +7,9 @@ using Unity.VisualScripting;
 using UnityEngine.Rendering;
 using System;
 using DG.Tweening;
-using UnityEngine.UI;
-
 public class SceneManager : MonoBehaviour
 {
 
-
-    public RectTransform panel1;
-    public RectTransform panel2;
-    public float transitionTime = 1f;
-
-    private bool isTransitioning = false;
     public Canvas canvas;
     public Stack<GameObject> panelStack = new Stack<GameObject>();
     public GameObject mainmenuvolume;
@@ -28,7 +20,12 @@ public class SceneManager : MonoBehaviour
     public Camera gameplayCamera;
     private CinemachineBrain cinemachineBrain;
     private bool gamePaused = false;
-  
+
+
+    public GameObject[] panels; // Array of panels to display
+    public int currentPanel = 0; // Index of initial panel to display
+    private int previousPanel = 0;
+
 
 
 
@@ -42,7 +39,12 @@ public class SceneManager : MonoBehaviour
         mainMenuCamera.enabled = true;
         gameplayCamera.enabled = false;
         cinemachineBrain.enabled = false;
-        
+
+        for (int i = 1; i < panels.Length; i++)
+        {
+            panels[i].SetActive(false);
+        }
+
     }
 
     void Update()
@@ -70,73 +72,57 @@ public class SceneManager : MonoBehaviour
         }
     }
 
+    void TransitionToPanel(int panelIndex)
+    {
+        // Get the current and target panels
+        GameObject current = panels[currentPanel];
+        GameObject target = panels[panelIndex];
+
+        // Slide the current panel out
+        current.transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.5f);
+
+        // Enable the target panel
+        target.SetActive(true);
+
+        // Scale up the target panel
+        target.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+        target.transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f);
+
+       
+
+        // Disable the current panel
+        current.SetActive(false);
+
+        // Update the current panel index and previous panel index
+        previousPanel = currentPanel;
+        currentPanel = panelIndex;
+    }
 
     public void NextPanel()
     {
-        if (isTransitioning) return;
-
-        isTransitioning = true;
-
-        Vector2 startPos1 = panel1.anchoredPosition;
-        Vector2 endPos1 = startPos1 - new Vector2(panel1.rect.width, 0);
-
-        Vector2 startPos2 = panel2.anchoredPosition;
-        Vector2 endPos2 = startPos2 - new Vector2(panel2.rect.width, 0);
-
-        panel1.DOAnchorPos(endPos1, transitionTime)
-            .OnComplete(() =>
-            {
-                panel1.gameObject.SetActive(false);
-                panel2.gameObject.SetActive(true);
-                panel2.anchoredPosition = startPos2;
-                panel2.DOAnchorPos(endPos2, transitionTime)
-                    .OnComplete(() =>
-                    {
-                        isTransitioning = false;
-                    });
-            });
-    }
-    public void PushPanel(GameObject panel)
-    {
-        
-        if (panelStack.Count > 0)
+        int nextIndex = currentPanel + 1;
+        if (nextIndex >= panels.Length)
         {
-            panelStack.Peek().SetActive(false);
+            nextIndex = 0;
         }
-        panelStack.Push(panel);
-        panel.SetActive(true);
-      
-
+        TransitionToPanel(nextIndex);
     }
 
-    public void PopPanel()
+    public void PreviousPanel()
     {
-        if (panelStack.Count > 0)
-        {
-            GameObject previousPanel = panelStack.Pop();
-            previousPanel.SetActive(false);
-            if (panelStack.Count > 0)
-            {
-                panelStack.Peek().SetActive(true);
-            }
-        }
+        TransitionToPanel(previousPanel);
     }
+
+    
     public void OnResumeButtonPressed()
     {
         Time.timeScale = 1;
-       
+        canvas.gameObject.SetActive(false);
         gameplayCamera.enabled = true;
         cinemachineBrain.enabled = true;
         gamePaused = false;
     }
-    public void OnBackButtonPressed()
-    {
-        
-        Debug.Log("Play button pressed!");
-        mainMenuCamera.enabled = true;
-        gameplayCamera.enabled = false;
-        cinemachineBrain.enabled = false;
-    }
+   
 
     public void OnPlayButtonPressed()
     {
@@ -149,23 +135,10 @@ public class SceneManager : MonoBehaviour
     }
 
 
-    public void OnOptionButtonPressed()
-    {
- 
-        optionPanel.gameObject.SetActive(true) ;
-        MainMenuPanel.gameObject.SetActive(false) ; 
-
-    }
-    public void BackButtonPressed()
-    {
-
-        optionPanel.gameObject.SetActive(false);
-        MainMenuPanel.gameObject.SetActive(true);
-
-    }
+   
     public void OnQuitButtonPressed()
     {
-        // Quit the game
+        
         Application.Quit();
     }
 
