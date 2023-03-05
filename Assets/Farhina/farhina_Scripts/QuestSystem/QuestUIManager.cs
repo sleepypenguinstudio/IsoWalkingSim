@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class QuestUIManager : MonoBehaviour
 {
-    //public TMP_Text QuestTitleText;
+    public TMP_Text QuestTitleText;
 
     //public Image iconImage;
 
@@ -41,10 +41,12 @@ public class QuestUIManager : MonoBehaviour
     {
         if (DialogueManager.instance.ShowCurrentQuest()!=null) {
             Debug.Log(DialogueManager.instance.ShowCurrentQuest().quest.QuestTask);
+            QuestTitleText.text = DialogueManager.instance.ShowCurrentQuest().quest.QuestTask;
         }
         else
         {
-            Debug.Log("Kaj nai kono");
+            QuestTitleText.text = "No Quest Currently available";
+            
         }
     }
 }
