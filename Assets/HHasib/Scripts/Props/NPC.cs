@@ -7,13 +7,13 @@ public class NPC : MonoBehaviour, IInteractable
     [Header("Ink JSON")]
     [SerializeField] private TextAsset[] inkJSON;
     [SerializeField] private TextAsset[] inkJSONMidQuest;
-    CinemachineVirtualCamera cineMachineCamera;
+    [SerializeField]CinemachineVirtualCamera cineMachineCamera;
     [SerializeField] QuestGiver questGiver;
-    NPC_Class npcCurrentState;
+    [SerializeField] NPC_Class npcCurrentState;
     [SerializeField]GameObject questItem;
-    Animator npcAnimator;
+    [SerializeField]Animator npcAnimator;
 
-
+    [SerializeField] bool isNonQuestNPC;
 
 
 
@@ -22,10 +22,20 @@ public class NPC : MonoBehaviour, IInteractable
 
     private void Awake()
     {
-        cineMachineCamera = gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
-        npcAnimator = gameObject.GetComponentInChildren<Animator>();
-        questGiver = GetComponent<QuestGiver>();
-        npcCurrentState = GetComponent<NPC_Class>();
+        if (gameObject.GetComponentInChildren<CinemachineVirtualCamera>())
+        {
+            cineMachineCamera = gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
+        }
+        if (gameObject.GetComponentInChildren<Animator>())
+        {
+            npcAnimator = gameObject.GetComponentInChildren<Animator>();
+        }
+        if (GetComponent<QuestGiver>()) {
+            questGiver = GetComponent<QuestGiver>();
+        }
+        if (GetComponent<NPC_Class>()) {
+            npcCurrentState = GetComponent<NPC_Class>();
+        }
       
     }
 
@@ -41,32 +51,44 @@ public class NPC : MonoBehaviour, IInteractable
     {
         cineMachineCamera.Priority = 13;
 
-        if (!npcCurrentState.isQuestDone && Quest_Class.instance.CurrentState == Quest_Class.QuestState.BeforeQuest && npcCurrentState.CurrentNpcState == NPC_Class.NpcState.NpcBeforeQuest && !Quest_Class.instance.isQuestActive)
-        {
-            DialogueManager.instance.EnterDialogueMode(inkJSON[0], cineMachineCamera, questGiver, npcCurrentState,npcAnimator);
-            questItem.SetActive(true);
-        }
-        else if (Quest_Class.instance.CurrentState == Quest_Class.QuestState.AmidQuest && npcCurrentState.CurrentNpcState == NPC_Class.NpcState.NpcAmidQuest)
-        {
-            DialogueManager.instance.EnterDialogueMode(inkJSONMidQuest[Random.Range(0,3)], cineMachineCamera, questGiver, npcCurrentState,npcAnimator);
-        }
-        else if (Quest_Class.instance.CurrentState == Quest_Class.QuestState.QuestFetched && npcCurrentState.CurrentNpcState == NPC_Class.NpcState.NpcCompleteQuest)
-        {
-            DialogueManager.instance.EnterDialogueMode(inkJSON[2], cineMachineCamera, questGiver, npcCurrentState,npcAnimator);
-        }
+        if (!isNonQuestNPC) {
 
 
-        else if (Quest_Class.instance.isQuestActive && npcCurrentState.CurrentNpcState == NPC_Class.NpcState.NpcBeforeQuest)
+            if (!npcCurrentState.isQuestDone && Quest_Class.instance.CurrentState == Quest_Class.QuestState.BeforeQuest && npcCurrentState.CurrentNpcState == NPC_Class.NpcState.NpcBeforeQuest && !Quest_Class.instance.isQuestActive)
+            {
+                DialogueManager.instance.EnterDialogueMode(inkJSON[0], cineMachineCamera, questGiver, npcCurrentState, npcAnimator,isNonQuestNPC);
+                questItem.SetActive(true);
+            }
+            else if (Quest_Class.instance.CurrentState == Quest_Class.QuestState.AmidQuest && npcCurrentState.CurrentNpcState == NPC_Class.NpcState.NpcAmidQuest)
+            {
+                DialogueManager.instance.EnterDialogueMode(inkJSONMidQuest[Random.Range(0, 3)], cineMachineCamera, questGiver, npcCurrentState, npcAnimator, isNonQuestNPC);
+            }
+            else if (Quest_Class.instance.CurrentState == Quest_Class.QuestState.QuestFetched && npcCurrentState.CurrentNpcState == NPC_Class.NpcState.NpcCompleteQuest)
+            {
+                DialogueManager.instance.EnterDialogueMode(inkJSON[2], cineMachineCamera, questGiver, npcCurrentState, npcAnimator, isNonQuestNPC);
+            }
+
+
+            else if (Quest_Class.instance.isQuestActive && npcCurrentState.CurrentNpcState == NPC_Class.NpcState.NpcBeforeQuest)
+            {
+                DialogueManager.instance.EnterDialogueMode(inkJSON[4], cineMachineCamera, questGiver, npcCurrentState, npcAnimator, isNonQuestNPC);
+
+            }
+
+            else if (npcCurrentState.isQuestDone)
+            {
+                DialogueManager.instance.EnterDialogueMode(inkJSON[3], cineMachineCamera, questGiver, npcCurrentState, npcAnimator, isNonQuestNPC);
+            }
+        }
+        else
         {
-            DialogueManager.instance.EnterDialogueMode(inkJSON[4], cineMachineCamera, questGiver, npcCurrentState,npcAnimator);
+
+            DialogueManager.instance.EnterDialogueMode(inkJSON[0], cineMachineCamera, questGiver, npcCurrentState, npcAnimator, isNonQuestNPC);
+
+            transform.gameObject.tag = "Finish";
+
 
         }
-
-        else if (npcCurrentState.isQuestDone)
-        {
-            DialogueManager.instance.EnterDialogueMode(inkJSON[3], cineMachineCamera, questGiver, npcCurrentState,npcAnimator);
-        }
-
 
     }
 }

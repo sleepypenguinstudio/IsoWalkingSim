@@ -46,6 +46,7 @@ public class DialogueManager : MonoBehaviour
     NPC_Class currentNpc;
     Animator currentNPCAnimator;
     QuestGiver currentOnGoingQuest;
+    bool currentNonQuestNPC;
 
 
     public bool InDialogue;
@@ -97,10 +98,10 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera,QuestGiver questGiver, NPC_Class npc_Class,Animator npc_animator)
+    public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera,QuestGiver questGiver, NPC_Class npc_Class,Animator npc_animator,bool isNonQuestNPC)
     {
 
-        SetQuestProperty(cineMachineCamera,questGiver,npc_Class,npc_animator);
+        SetQuestProperty(cineMachineCamera,questGiver,npc_Class,npc_animator,isNonQuestNPC);
         AnimationController.instance.PlayAnimation(currentNPCAnimator,"Blend",1);
         InDialogue = true;
 
@@ -135,35 +136,49 @@ public class DialogueManager : MonoBehaviour
 
         Player.GetComponent<PlayerInputSystem>().enabled = true;
 
-        if (!Quest_Class.instance.isQuestActive && !currentNpc.isQuestDone)
+
+
+
+        if (currentNonQuestNPC)
         {
+            currentNpc.CurrentNpcState = NPC_Class.NpcState.NpcCompleteQuest;
+            Quest_Class.instance.CurrentState = Quest_Class.QuestState.QuestFetched;
             StartQuestProperty();
-            Quest_Class.instance.CurrentState = Quest_Class.QuestState.AmidQuest;
-            Quest_Class.instance.isQuestActive = true;
-            currentNpc.CurrentNpcState = NPC_Class.NpcState.NpcAmidQuest;
         }
-        else if (Quest_Class.instance.CurrentState == Quest_Class.QuestState.AmidQuest && currentNpc.CurrentNpcState == NPC_Class.NpcState.NpcAmidQuest)
-        {
-            
+
+        else {
+
+
+            if (!Quest_Class.instance.isQuestActive && !currentNpc.isQuestDone)
+            {
                 StartQuestProperty();
-            
-        }
-        else if(Quest_Class.instance.isQuestActive && !currentNpc.isQuestDone && currentNpc.CurrentNpcState == NPC_Class.NpcState.NpcCompleteQuest )
-        {
-             
-            currentNpc.isQuestDone = true;
-            Quest_Class.instance.isQuestActive = false;
-            currentNpc.CurrentNpcState = NPC_Class.NpcState.NpcAfterQuest;
-            Quest_Class.instance.CurrentState = Quest_Class.QuestState.BeforeQuest;
-            StartQuestProperty();
-           
-            Debug.Log("Kaj  sesh");
+                Quest_Class.instance.CurrentState = Quest_Class.QuestState.AmidQuest;
+                Quest_Class.instance.isQuestActive = true;
+                currentNpc.CurrentNpcState = NPC_Class.NpcState.NpcAmidQuest;
+            }
+            else if (Quest_Class.instance.CurrentState == Quest_Class.QuestState.AmidQuest && currentNpc.CurrentNpcState == NPC_Class.NpcState.NpcAmidQuest)
+            {
+
+                StartQuestProperty();
+
+            }
+            else if (Quest_Class.instance.isQuestActive && !currentNpc.isQuestDone && currentNpc.CurrentNpcState == NPC_Class.NpcState.NpcCompleteQuest)
+            {
+
+                currentNpc.isQuestDone = true;
+                Quest_Class.instance.isQuestActive = false;
+                currentNpc.CurrentNpcState = NPC_Class.NpcState.NpcAfterQuest;
+                Quest_Class.instance.CurrentState = Quest_Class.QuestState.BeforeQuest;
+                StartQuestProperty();
+
+                Debug.Log("Kaj  sesh");
 
 
-        }
-        else
-        {
-            StartQuestProperty();
+            }
+            else
+            {
+                StartQuestProperty();
+            }
         }
         AnimationController.instance.PlayAnimation(currentNPCAnimator, "Blend", 0);
         InDialogue = false;
@@ -271,7 +286,7 @@ public class DialogueManager : MonoBehaviour
        
         ContinueStory();
     }
-     public void SetQuestProperty(CinemachineVirtualCamera cineMachineCamera, QuestGiver questGiver,NPC_Class npc_Class,Animator npc_animator)
+     public void SetQuestProperty(CinemachineVirtualCamera cineMachineCamera, QuestGiver questGiver,NPC_Class npc_Class,Animator npc_animator,bool isNonQuestNpc)
     {
         dialogueCineMachineCamera = cineMachineCamera;
 
@@ -280,6 +295,7 @@ public class DialogueManager : MonoBehaviour
         currentQuest = questGiver;
         currentNpc = npc_Class;
         currentNPCAnimator = npc_animator;
+        currentNonQuestNPC= isNonQuestNpc;
     }
 
     public void StartQuestProperty()
