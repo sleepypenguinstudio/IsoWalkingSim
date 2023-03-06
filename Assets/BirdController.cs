@@ -5,7 +5,7 @@ public class BirdController : MonoBehaviour
 {
     [SerializeField] private Transform[] targetPositions;
     [SerializeField] private float flySpeed = 10f;
-    [SerializeField] private float rotationSpeed = 10f;
+    [SerializeField] private float rotationSpeed = 0f;
 
     private int currentPositionIndex = 0;
 
