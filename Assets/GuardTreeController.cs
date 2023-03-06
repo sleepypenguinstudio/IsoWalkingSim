@@ -17,7 +17,7 @@ public class GuardTreeController : MonoBehaviour
         if (other.tag == "Player")
         {
             AnimationController.instance.PlayAnimation(animator, "Blend", 0.5f);
-            if (Vector3.Distance(this.gameObject.transform.position, other.gameObject.transform.position) < 1f)
+            if (Vector3.Distance(this.gameObject.transform.position, other.gameObject.transform.position) < 6f)
             {
                 AnimationController.instance.PlayAnimation(animator, "Blend", 1f);
             }

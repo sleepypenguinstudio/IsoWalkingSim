@@ -69,6 +69,8 @@ public class PlayerInputSystem : MonoBehaviour
 
         Vector2 mousePosition2D = Mouse.current.position.ReadValue();
 
+       
+
         Vector3 mousePosition3D = new Vector3(mousePosition2D.x,mousePosition2D.y,0f);
 
        // thirdPersonController.Move(mousePosition3D);
