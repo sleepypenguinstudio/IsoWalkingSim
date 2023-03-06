@@ -112,7 +112,7 @@ public class PlayerInputSystem : MonoBehaviour
 
     private void RotateCamera(InputAction.CallbackContext context)
     {
-        if (!Mouse.current.middleButton.isPressed)
+        if (!Mouse.current.rightButton.isPressed)
             return;
 
         float value = context.ReadValue<Vector2>().x;

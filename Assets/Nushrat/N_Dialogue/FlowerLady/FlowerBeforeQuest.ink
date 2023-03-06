@@ -30,7 +30,7 @@ No, no it's okay I don't need any flowers... but do you need anything? #speaker:
 
 No no nothing like that.... I just, I mean, you seem very stressed, is there anything I can do to help?  #speaker:Lubaba #potrait:PlayerPotrait
 
--Well yes actually I need to pick some more hyacinth, you know those small purple flowers? #speaker:Fuli #potrait:MotherPotrait
+-Well yes actually I need to pick some more daffodils, you know those small yellow flowers? #speaker:Fuli #potrait:MotherPotrait
 
 nods** #speaker:Lubaba #potrait:PlayerPotrait
 
