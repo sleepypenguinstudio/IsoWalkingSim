@@ -40,12 +40,12 @@ public class QuestUIManager : MonoBehaviour
     private void Update()
     {
         if (DialogueManager.instance.ShowCurrentQuest()!=null) {
-            Debug.Log(DialogueManager.instance.ShowCurrentQuest().quest.QuestTask);
+            ///Debug.Log(DialogueManager.instance.ShowCurrentQuest().quest.QuestTask);
            
         }
         else
         {
-            Debug.Log("Kaj nai kono");
+            
         }
     }
 }

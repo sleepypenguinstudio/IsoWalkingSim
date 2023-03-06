@@ -7,8 +7,16 @@ using UnityEngine.EventSystems;
 using Cinemachine;
 using System;
 
+
 public class DialogueManager : MonoBehaviour
 {
+
+
+
+    public static event Action OnEnterDialogueMode;
+
+
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
@@ -100,6 +108,8 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJSON, CinemachineVirtualCamera cineMachineCamera,QuestGiver questGiver, NPC_Class npc_Class,Animator npc_animator,bool isNonQuestNPC)
     {
+
+       
 
         SetQuestProperty(cineMachineCamera,questGiver,npc_Class,npc_animator,isNonQuestNPC);
         AnimationController.instance.PlayAnimation(currentNPCAnimator,"Blend",1);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -8,9 +9,13 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] float interactRange;
     public bool IsInteractable;
     PlayerMovement playerMovement;
+
+    public NavMeshAgent agent;
+
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     private void OnEnable()
@@ -34,11 +39,25 @@ public class PlayerInteraction : MonoBehaviour
             if (collider.CompareTag("NPC") && collider.TryGetComponent(out IInteractable interactable))
             {
                 interactable.NPCAction();
-                playerMovement.LookTowards(collider.gameObject);
+                if (collider.GetComponent<NPC>())
+                {
+                   
+                    GameObject childObject = collider.gameObject.transform.Find("PlayerPosition").gameObject;
+
+                   // this.gameObject.transform.position = childObject.transform.position;
+
+                    agent.SetDestination(childObject.transform.position);
+                    StartCoroutine(LookAt(collider));
+
+                
+
+                }
+
+                
             }
 
             
-            Debug.Log(collider);
+           // Debug.Log(collider);
         }
 
     }
@@ -59,6 +78,18 @@ public class PlayerInteraction : MonoBehaviour
             
         }
         return false;
+    }
+
+
+
+    IEnumerator LookAt(Collider collider)
+    {
+
+        yield return new WaitForSeconds(2f);
+        Debug.Log("GG");
+        playerMovement.LookTowards(collider.gameObject);
+
+
     }
 
 
