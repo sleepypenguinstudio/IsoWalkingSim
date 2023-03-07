@@ -82,15 +82,22 @@ public class PlayerInteraction : MonoBehaviour
 
 
 
-    IEnumerator LookAt(Collider collider)
-    {
+    
 
-        yield return new WaitForSeconds(2f);
-        Debug.Log("GG");
-        playerMovement.LookTowards(collider.gameObject);
+        IEnumerator LookAt(Collider collider)
+        {
+            while (agent.pathPending || agent.remainingDistance > 0.1f)
+            {
+                yield return null;
+            }
+
+            playerMovement.LookTowards(collider.gameObject);
 
 
-    }
+        }
+
+
+    
 
 
 }

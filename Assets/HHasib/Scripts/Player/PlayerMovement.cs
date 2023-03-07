@@ -49,7 +49,12 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         AssignAnimationID();
 
-       // transform.position = SaveMechanics.instance.GetPlayerPostion();
+        if (SaveMechanics.instance.GetPlayerPostion()!=null)
+        {
+
+            transform.position = SaveMechanics.instance.GetPlayerPostion();
+
+        }
     }
 
     private void Update()
@@ -93,10 +98,7 @@ public class PlayerMovement : MonoBehaviour
                 pointToMove = rayCastHit.point;
                 agent.SetDestination(rayCastHit.point);
 
-                Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y,transform.position.z);
-
-
-               // SaveMechanics.instance.SavePlayerPosition(playerPosition);
+                StartCoroutine(  SavePlayerLocation());
 
             }
         }
@@ -141,6 +143,23 @@ public class PlayerMovement : MonoBehaviour
 
 
 
+    IEnumerator SavePlayerLocation()
+    {
+        while (agent.pathPending || agent.remainingDistance > 0.1f)
+        {
+            yield return null;
+           
+            
+        }
+
+        Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
+
+        SaveMechanics.instance.SavePlayerPosition(playerPosition);
+        Debug.Log("saving");
+
+
+    }
 
 
 
