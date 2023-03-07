@@ -29,8 +29,5 @@ public class SaveMechanics : MonoBehaviour
     }
 
 
-    void SaveGame()
-    {
-
-    }
+    
 }
