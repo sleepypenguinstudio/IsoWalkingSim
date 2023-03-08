@@ -31,6 +31,7 @@ public class JsonSaving : MonoBehaviour
     public void CreateNewPlayerData(NPC.NPC_Name npc, bool isQuestDone, NPC_Class.NpcState npcState)
     {
         playerData = new PlayerData(npc,isQuestDone,npcState);
+        SaveData();
 
     }
 
@@ -59,11 +60,12 @@ public class JsonSaving : MonoBehaviour
     }
 
 
-    public void LoadData()
+    public PlayerData LoadData()
     {
         using StreamReader reader = new StreamReader(path);
         string json = reader.ReadToEnd();
         PlayerData data = JsonUtility.FromJson<PlayerData>(json);
+        return data;
     }
 
 }

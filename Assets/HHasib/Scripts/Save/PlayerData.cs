@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerData : MonoBehaviour
+public class PlayerData 
 {
    
     Quest_Class.QuestState currentState;
-    bool isQuestActive;
+    public bool isQuestActive;
 
 
-    bool oldLadyQuestDone;
-    NPC_Class.NpcState oldLadyCurrentState;
+    public bool oldLadyQuestDone;
+    public NPC_Class.NpcState oldLadyCurrentState;
 
-    bool singleMomQuestDone;
-    NPC_Class.NpcState singleMomCurrentState;
+    public bool singleMomQuestDone;
+   public NPC_Class.NpcState singleMomCurrentState;
 
 
-    bool rockStarQuestDone;
-    NPC_Class.NpcState rockStarCurrentState;
+    public bool rockStarQuestDone;
+   public NPC_Class.NpcState rockStarCurrentState;
 
     
 
@@ -54,6 +54,8 @@ public class PlayerData : MonoBehaviour
 
 
     }
+
+ 
 
 
 

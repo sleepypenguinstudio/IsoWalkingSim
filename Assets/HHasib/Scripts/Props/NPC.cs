@@ -49,7 +49,13 @@ public class NPC : MonoBehaviour, IInteractable
             npcCurrentState = GetComponent<NPC_Class>();
         }
 
+        if (JsonSaving.instance.LoadData() != null)
+        {
+            Load();
 
+        }
+
+       
         sendData();
       
     }
@@ -115,7 +121,26 @@ public class NPC : MonoBehaviour, IInteractable
         }
     }
 
+    void Load()
+    {
+        switch (npc_Name)
+        {
+            case NPC.NPC_Name.Fuli:
+                npcCurrentState.isQuestDone =     JsonSaving.instance.LoadData().singleMomQuestDone;
+                npcCurrentState.CurrentNpcState = JsonSaving.instance.LoadData().singleMomCurrentState;
+                
+                break;
+            case NPC.NPC_Name.OldLady:
+                npcCurrentState.isQuestDone =     JsonSaving.instance.LoadData().oldLadyQuestDone;
+                npcCurrentState.CurrentNpcState = JsonSaving.instance.LoadData().oldLadyCurrentState;
+                break;
+            case NPC.NPC_Name.RockStar:
+                npcCurrentState.isQuestDone = JsonSaving.instance.LoadData().rockStarQuestDone;
+                npcCurrentState.CurrentNpcState =        JsonSaving.instance.LoadData().rockStarCurrentState;
+                break;
 
+        }
+    }
 
 
 
