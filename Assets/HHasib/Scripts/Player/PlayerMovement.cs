@@ -49,12 +49,12 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         AssignAnimationID();
 
-        if (SaveMechanics.instance.GetPlayerPostion()!=null)
-        {
+        //if (SaveMechanics.instance.GetPlayerPostion()!=null)
+        //{
 
-            transform.position = SaveMechanics.instance.GetPlayerPostion();
+        //    transform.position = SaveMechanics.instance.GetPlayerPostion();
 
-        }
+        //}
     }
 
     private void Update()
@@ -155,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 playerPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
 
-        SaveMechanics.instance.SavePlayerPosition(playerPosition);
+      //  SaveMechanics.instance.SavePlayerPosition(playerPosition);
         Debug.Log("saving");
 
 

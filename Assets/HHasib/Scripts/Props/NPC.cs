@@ -4,6 +4,18 @@ using UnityEngine;
 using Cinemachine;
 public class NPC : MonoBehaviour, IInteractable
 {
+
+
+
+    public enum NPC_Name
+    {
+        OldLady,
+        RockStar,
+        Fuli
+        
+    }
+
+
     [Header("Ink JSON")]
     [SerializeField] private TextAsset[] inkJSON;
     [SerializeField] private TextAsset[] inkJSONMidQuest;
@@ -16,7 +28,7 @@ public class NPC : MonoBehaviour, IInteractable
     [SerializeField] bool isNonQuestNPC;
 
 
-
+    [SerializeField] NPC_Name npc_Name;
 
 
 
@@ -36,20 +48,19 @@ public class NPC : MonoBehaviour, IInteractable
         if (GetComponent<NPC_Class>()) {
             npcCurrentState = GetComponent<NPC_Class>();
         }
+
+
+        sendData();
       
     }
 
 
-    private void Update()
-    {
-        
-            
-        
-    }
+   
 
     public void NPCAction()
     {
         cineMachineCamera.Priority = 13;
+        sendData();
 
         if (!isNonQuestNPC) {
 
@@ -91,7 +102,25 @@ public class NPC : MonoBehaviour, IInteractable
         }
 
     }
+
+
+
+
+
+    void sendData()
+    {
+        if (!isNonQuestNPC) {
+
+            JsonSaving.instance.CreateNewPlayerData(npc_Name, npcCurrentState.isQuestDone, npcCurrentState.CurrentNpcState);
+        }
+    }
+
+
+
+
+
 }
+
 
       // cineMachineCamera.Priority = 8;
         
