@@ -2,7 +2,7 @@
 
 === main ===
 
-The lake is so beautiful. #speaker:Old Lady #potrait:OldLadyPotrait
+What a beautiful sight. #speaker:Bela #potrait:OldLadyPotrait
 
 
 -> END

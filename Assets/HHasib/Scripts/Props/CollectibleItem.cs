@@ -9,9 +9,9 @@ public class CollectibleItem : MonoBehaviour, IInteractable
 
     private void Awake()
     {
-        //npcCurrentState =  transform.parent.gameObject.GetComponent<NPC_Class>();
+        npcCurrentState =  transform.parent.gameObject.GetComponent<NPC_Class>();
     }
-
+    
     public void NPCAction()
     {
         npcCurrentState.CurrentNpcState = NPC_Class.NpcState.NpcCompleteQuest;

@@ -8,6 +8,12 @@ public class SaveMechanics : MonoBehaviour
 
     public static SaveMechanics instance;
 
+
+
+
+
+
+
     private void Awake()
     {
         instance = this;
@@ -28,9 +34,11 @@ public class SaveMechanics : MonoBehaviour
         return new Vector3(PlayerPrefs.GetFloat("playerPosX"), PlayerPrefs.GetFloat("playerPosY"), PlayerPrefs.GetFloat("playerPosZ"));
     }
 
-
-    void SaveGame()
+    public void SavePlayerState()
     {
 
+
+
     }
+    
 }

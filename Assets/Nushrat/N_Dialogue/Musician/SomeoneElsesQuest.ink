@@ -2,6 +2,6 @@
 
 === main ===
 
-- See you in my concert!  #speaker:Musician #potrait:RockstarPotrait
+See you in my concert!  #speaker:Irshad #potrait:RockstarPotrait
 
 -> END

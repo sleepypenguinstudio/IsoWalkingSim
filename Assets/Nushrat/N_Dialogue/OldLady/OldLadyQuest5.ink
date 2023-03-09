@@ -2,7 +2,7 @@
 
 === main ===
 
--Maybe he's sitting near the fountain.   #speaker:Old Lady #potrait:OldLadyPotrait
+Maybe he's sitting near the ferris wheel.   #speaker:Bela #potrait:OldLadyPotrait
 
 
 -> END

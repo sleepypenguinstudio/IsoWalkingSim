@@ -13,7 +13,7 @@ public class ContentVisibility : MonoBehaviour
     private void Update()
     {
         
-        if (playerInteraction.InterectDetection())
+        if (playerInteraction.InterectDetection() && !DialogueManager.instance.InDialogue)
         {
            
             Show(interectUiImage);

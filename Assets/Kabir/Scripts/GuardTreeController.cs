@@ -7,26 +7,40 @@ public class GuardTreeController : MonoBehaviour
     string floatParameterName = "Blend";
     float floatIncrement = 0.1f;
 
-    private void Start()
+    void Awake()
     {
-        PlayAnimationWithFloat(animator, floatParameterName, 0.1f);
+        animator = GetComponent<Animator>();
     }
 
-    public void PlayAnimationWithFloat(Animator animator, string floatParameterName, float floatIncrement)
+    private void OnTriggerEnter(Collider other)
     {
-        animator.SetFloat(floatParameterName, 0);
-        StartCoroutine(UpdateFloatValue(animator, floatParameterName, floatIncrement));
-    }
-
-    private IEnumerator UpdateFloatValue(Animator animator, string floatParameterName, float floatIncrement)
-    {
-        float currentValue = 0f;
-        while (currentValue <= 1f)
+        if (other.tag == "Player")
         {
-            animator.SetFloat(floatParameterName, currentValue);
-            currentValue += floatIncrement;
+            AnimationController.instance.PlayAnimation(animator, "Blend", 0.5f);
+            if (Vector3.Distance(this.gameObject.transform.position, other.gameObject.transform.position) < 6f)
+            {
+                AnimationController.instance.PlayAnimation(animator, "Blend", 1f);
+            }
+        }
 
-            yield return new WaitForSeconds(0.1f); // Wait for 0.1 seconds before incrementing again
+       
+   
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            AnimationController.instance.PlayAnimation(animator, "Blend", 0f);
+
         }
     }
+
+
+
+
+
+
+
 }
