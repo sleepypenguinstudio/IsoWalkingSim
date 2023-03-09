@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine.Rendering;
 using System;
 using DG.Tweening;
-public class SceneManager : MonoBehaviour
+public class SceneManagerUI : MonoBehaviour
 {
 
     public GameObject Player;
