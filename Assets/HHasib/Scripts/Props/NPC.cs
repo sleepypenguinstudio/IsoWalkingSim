@@ -49,14 +49,14 @@ public class NPC : MonoBehaviour, IInteractable
             npcCurrentState = GetComponent<NPC_Class>();
         }
 
-        if (JsonSaving.instance.LoadData() != null)
-        {
-            Load();
+        //if (JsonSaving.instance.LoadData() != null)
+        //{
+        //    Load();
 
-        }
+        //}
 
        
-        sendData();
+        //sendData();
       
     }
 
