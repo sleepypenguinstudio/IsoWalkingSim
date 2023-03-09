@@ -10,8 +10,11 @@ using DG.Tweening;
 public class SceneManager : MonoBehaviour
 {
 
+    public GameObject Player;
+
+
+
     public Canvas canvas;
-    public Stack<GameObject> panelStack = new Stack<GameObject>();
     public GameObject mainmenuvolume;
     public GameObject gameplayvolume;
     public CanvasGroup optionPanel;
@@ -27,7 +30,10 @@ public class SceneManager : MonoBehaviour
     private int previousPanel = 0;
 
 
-
+    private void Awake()
+    {
+        Player.GetComponent<PlayerInputSystem>().enabled = false;
+    }
 
 
 
@@ -132,6 +138,11 @@ public class SceneManager : MonoBehaviour
         mainMenuCamera.enabled = false;
         gameplayCamera.enabled = true;
         cinemachineBrain.enabled = true;
+
+
+
+        Player.GetComponent<PlayerInputSystem>().enabled = true;
+
     }
 
 
