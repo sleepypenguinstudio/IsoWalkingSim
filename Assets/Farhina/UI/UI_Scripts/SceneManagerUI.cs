@@ -10,7 +10,15 @@ using DG.Tweening;
 public class SceneManagerUI : MonoBehaviour
 {
 
+
+
+    public static SceneManagerUI instance;
+
+    public static int counter;
+    
+    
     public GameObject Player;
+
 
 
 
@@ -32,7 +40,15 @@ public class SceneManagerUI : MonoBehaviour
 
     private void Awake()
     {
+
+        instance = this;
+
+
+        counter = 0;
+
+
         Player.GetComponent<PlayerInputSystem>().enabled = false;
+
     }
 
 
@@ -76,6 +92,19 @@ public class SceneManagerUI : MonoBehaviour
                 gamePaused = true;
             }
         }
+
+
+
+
+
+
+
+        if(counter == 3)
+        {
+            SceneManager.LoadScene(2);
+        }
+
+
     }
 
     void TransitionToPanel(int panelIndex)

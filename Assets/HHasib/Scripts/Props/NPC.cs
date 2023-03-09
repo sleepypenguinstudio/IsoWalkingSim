@@ -5,6 +5,7 @@ using Cinemachine;
 public class NPC : MonoBehaviour, IInteractable
 {
 
+    bool sceneCounter = false;
 
 
     public enum NPC_Name
@@ -60,8 +61,17 @@ public class NPC : MonoBehaviour, IInteractable
       
     }
 
+    private void Update()
+    {
+        if(npcCurrentState.isQuestDone && sceneCounter == false)
+        {
+            SceneManagerUI.counter++ ;
+            sceneCounter = true;
+        }
+    }
 
-   
+
+
 
     public void NPCAction()
     {
