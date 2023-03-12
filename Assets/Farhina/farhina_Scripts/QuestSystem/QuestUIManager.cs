@@ -45,7 +45,7 @@ public class QuestUIManager : MonoBehaviour
         }
         else
         {
-            QuestTitleText.text = "No Quest Currently available";
+            QuestTitleText.text = "No Quest Active";
             
         }
     }
