@@ -39,7 +39,18 @@ public class QuestUIManager : MonoBehaviour
 
     private void Update()
     {
-        if (DialogueManager.instance.ShowCurrentQuest()!=null) {
+
+        if(SceneManagerUI.counter==3)
+        {
+            QuestTitleText.text = "Leave The park";
+
+            return;
+        }
+
+        else if (DialogueManager.instance.ShowCurrentQuest()!=null) {
+
+
+
             Debug.Log(DialogueManager.instance.ShowCurrentQuest().quest.QuestTask);
             QuestTitleText.text = DialogueManager.instance.ShowCurrentQuest().quest.QuestTask;
         }
