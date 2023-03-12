@@ -10,12 +10,13 @@ public class TimelineManager : MonoBehaviour
 {
 
     [SerializeField] PlayableDirector playableDirector;
+    [SerializeField] int sceneNum;
 
     private void Update()
     {
         if (playableDirector.state != PlayState.Playing)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(sceneNum);
 
 
         }

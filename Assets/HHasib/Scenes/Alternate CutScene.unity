@@ -725,6 +725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playableDirector: {fileID: 1198141902}
+  sceneNum: 1
 --- !u!4 &790607742
 Transform:
   m_ObjectHideFlags: 0
