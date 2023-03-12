@@ -308,7 +308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4aaf83d3ef5133e4f8c86d4ad0f693ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25034add7f7549c4bac511eff2064c7f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7e77958c5d7cc364c99c1932e2458ba1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a634bd1c4169aad4eaad3b84b1d6a894, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -619,8 +619,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u201CMaybe what I need is\u2026\u201D\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8a36d0c151d88e94787fcd85131ed37d, type: 2}
+  m_sharedMaterial: {fileID: 2095032467213191348, guid: 8a36d0c151d88e94787fcd85131ed37d,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1054,8 +1055,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u201CJust need some way to relax\u2026\u201D\n\n\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8a36d0c151d88e94787fcd85131ed37d, type: 2}
+  m_sharedMaterial: {fileID: 2095032467213191348, guid: 8a36d0c151d88e94787fcd85131ed37d,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1210,8 +1212,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u201CNeed to escape\u2026\u201D\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8a36d0c151d88e94787fcd85131ed37d, type: 2}
+  m_sharedMaterial: {fileID: 2095032467213191348, guid: 8a36d0c151d88e94787fcd85131ed37d,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1366,15 +1369,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u201CStuck in traffic for 2 hours today\u2026\u201D"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8a36d0c151d88e94787fcd85131ed37d, type: 2}
+  m_sharedMaterial: {fileID: 2095032467213191348, guid: 8a36d0c151d88e94787fcd85131ed37d,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 0
-  m_fontColor: {r: 0, g: 0, b: 0, a: 0}
+    rgba: 15724531
+  m_fontColor: {r: 0.9528302, g: 0.9384479, b: 0.9384479, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
