@@ -15,12 +15,12 @@ public class SceneManagerUI : MonoBehaviour
     public static SceneManagerUI instance;
 
     public static int counter;
-    
-    
+
+    public GameObject Khamba;
     public GameObject Player;
 
 
-
+    public bool Resume = false;
 
     public Canvas canvas;
     public GameObject mainmenuvolume;
@@ -72,7 +72,9 @@ public class SceneManagerUI : MonoBehaviour
     void Update()
     {
         // Check for the "Escape" key to pause/unpause the game and return to the main menu
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+
+        if (Input.GetKeyDown(KeyCode.Escape) && Resume == true)
         {
             if (gamePaused)
             {
@@ -97,9 +99,7 @@ public class SceneManagerUI : MonoBehaviour
 
 
 
-
-
-        if(counter == 3)
+        if (counter == 3)
         {
             SceneManager.LoadScene(2);
         }
@@ -114,14 +114,14 @@ public class SceneManagerUI : MonoBehaviour
         GameObject target = panels[panelIndex];
 
         // Slide the current panel out
-        current.transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.5f);
+        //cu/*rrent.transform.DOScale(new Vector3(0.8f, 0.8f, 0.8f), 0.5f);
 
         // Enable the target panel
         target.SetActive(true);
 
         // Scale up the target panel
-        target.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-        target.transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f);
+        //target.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+        //target.transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f);
 
 
 
@@ -171,6 +171,17 @@ public class SceneManagerUI : MonoBehaviour
 
 
         Player.GetComponent<PlayerInputSystem>().enabled = true;
+
+        Resume = true;
+
+        Khamba.SetActive(false);
+
+
+
+
+
+
+
 
     }
 
