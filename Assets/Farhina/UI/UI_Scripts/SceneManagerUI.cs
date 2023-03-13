@@ -101,7 +101,7 @@ public class SceneManagerUI : MonoBehaviour
 
 
 
-        if (counter == 3)
+        if (counter > 3)
         {
             GateGameObject.tag = "NPC";
            

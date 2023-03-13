@@ -40,9 +40,9 @@ public class QuestUIManager : MonoBehaviour
     private void Update()
     {
 
-        if(SceneManagerUI.counter==3)
+        if(SceneManagerUI.counter > 3)
         {
-            QuestTitleText.text = "Leave The park";
+            QuestTitleText.text = "Leave the Park";
 
             return;
         }
