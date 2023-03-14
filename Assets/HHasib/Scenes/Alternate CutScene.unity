@@ -961,6 +961,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -5488537304913340970, guid: 08f079d55ec2db4498fe5ab7b1225550, type: 2}
     value: {fileID: 1636065126}
+  - key: {fileID: -3005326541584130598, guid: 08f079d55ec2db4498fe5ab7b1225550, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1198141903
@@ -1194,7 +1196,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5825f7a95fefcd6448e4b693294de572, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6f104eddcb435d42843a48db0444e3d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
